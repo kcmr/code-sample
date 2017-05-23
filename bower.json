@@ -1,0 +1,29 @@
+{
+  "name": "code-highlighter",
+  "authors": [
+    "Kus Cámara <kus.camara@gmail.com>"
+  ],
+  "description": "Syntax hightlighter",
+  "main": "code-highlighter.html",
+  "keywords": [
+    "polymer",
+    "web-component"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "highlight.js": "isagalaev/highlight.js#^9.11.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "^6.0.0",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#^2.0.0"
+  },
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -50,7 +50,7 @@ Example:
 - atom-one-ligth.html
 - default.html
 - github.html
-- oned-dark.html
+- one-dark.html
 - solarized-dark.html
 - solarized-light.html
 

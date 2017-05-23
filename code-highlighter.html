@@ -8,6 +8,7 @@
         display: block;
       }
 
+      pre { margin: 0; }
       pre, code {
         font-family: var(--code-highlighter-font-family, Operator Mono, Roboto Mono, monaco, consolas, monospace);
         font-size: var(--code-highlighter-font-size, 14px);
@@ -48,12 +49,14 @@
 
         connectedCallback() {
           super.connectedCallback();
-          if (this.querySelector('template')) {
-            this._content = this.querySelector('template').innerHTML;
-          } else {
-            // TODO: check that there are childNodes
-            console.error('content must be provided inside a <template> tag');
-          }
+          setTimeout(function() {
+            if (this.querySelector('template')) {
+              this._content = this.querySelector('template').innerHTML;
+            } else {
+              // TODO: check that there are childNodes
+              console.error('content must be provided inside a <template> tag');
+            }
+          }.bind(this), 1);
         }
 
         _contentChanged(content) {

@@ -10,8 +10,7 @@
     "web-component"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0",
-    "highlight.js": "isagalaev/highlight.js#^9.11.0"
+    "polymer": "Polymer/polymer#^2.0.0"
   },
   "devDependencies": {
     "web-component-tester": "^6.0.0",

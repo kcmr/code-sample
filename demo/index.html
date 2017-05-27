@@ -8,7 +8,14 @@
     <link rel="import" href="../themes/one-dark.html">
     <link rel="import" href="../code-sample.html">
     <style>
+      body { margin: auto; background: #1e2127; }
+      @media (min-width: 60em) {
+        body { max-width: 60%; }
+      }
+
       code-sample { margin: 20px; }
+      .navy-bg { --code-sample-background: #000D25; }
+      .white-bg { --code-sample-background: #f9fbff; }
     </style>
   </head>
   <body>
@@ -24,7 +31,7 @@
       </template>
     </code-sample>
 
-    <code-sample>
+    <code-sample class="navy-bg">
       <template>
         <resizable-panels>
           <div class="panel-1">lorem...</div>
@@ -34,7 +41,7 @@
       </template>
     </code-sample>
 
-    <code-sample>
+    <code-sample class="white-bg">
       <template>
         function algo(param) {
           alert('helloooow');

@@ -3,11 +3,16 @@
   "authors": [
     "Kus Cámara <kus.camara@gmail.com>"
   ],
-  "description": "Syntax hightlighter",
+  "description": "Wrapper element for highlight.js",
   "main": "code-sample.html",
   "keywords": [
     "polymer",
-    "web-component"
+    "web-component",
+    "syntax highlighting",
+    "highlight.js",
+    "highlight",
+    "code",
+    "pre"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0"

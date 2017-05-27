@@ -72,6 +72,13 @@ Example:
 
 ### Styling
 
+The following custom CSS properties are available for styling:
+
+* `--code-sample-font-family`: font-family applied to `<pre>` and `<code>` elements.   
+Default: Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace.
+* `--code-sample-font-size`: font-size applied to `<pre>` and `<code>` elements.   
+Default: 14px.
+
 Included themes contain custom CSS properties to set the background and text color.
 
 * `--code-sample-background`: code background color.

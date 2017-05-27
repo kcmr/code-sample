@@ -28,6 +28,13 @@
 
       /* global hljs */
 
+      /**
+       * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
+       *
+       * @customElement
+       * @polymer
+       * @demo demo/index.html
+       */
       class CodeSample extends Polymer.Element {
         static get is() { return 'code-sample' }
         static get properties() {
@@ -36,6 +43,11 @@
               type: String,
               observer: '_contentChanged'
             },
+
+            /**
+             * Code type. (eg.: html, js, css)
+             * Options are the same as the available classes for `<code>` tag using highligh.js
+             */
             type: {
               type: String
             }

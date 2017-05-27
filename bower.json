@@ -1,10 +1,10 @@
 {
-  "name": "code-highlighter",
+  "name": "code-sample",
   "authors": [
     "Kus Cámara <kus.camara@gmail.com>"
   ],
   "description": "Syntax hightlighter",
-  "main": "code-highlighter.html",
+  "main": "code-sample.html",
   "keywords": [
     "polymer",
     "web-component"

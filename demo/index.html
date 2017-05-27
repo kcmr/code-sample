@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>code-highlighter demo</title>
+    <title>code-sample demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../themes/one-dark.html">
-    <link rel="import" href="../code-highlighter.html">
+    <link rel="import" href="../code-sample.html">
     <style>
-      code-highlighter { margin: 20px; }
+      code-sample { margin: 20px; }
     </style>
   </head>
   <body>
-    <code-highlighter type="html">
+    <code-sample>
       <template>
         <div class="something">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet distinctio nam, possimus officia error delectus impedit libero corrupti, sunt, sapiente suscipit. Esse, quisquam tempore similique eveniet veritatis pariatur adipisci sit.</p>
@@ -22,9 +22,9 @@
           alert('hola');
         </script>
       </template>
-    </code-highlighter>
+    </code-sample>
 
-    <code-highlighter type="html">
+    <code-sample>
       <template>
         <resizable-panels>
           <div class="panel-1">lorem...</div>
@@ -32,17 +32,17 @@
           <div class="panel-3">dolor...</div>
         </resizable-panels>
       </template>
-    </code-highlighter>
+    </code-sample>
 
-    <code-highlighter type="javascript">
+    <code-sample>
       <template>
         function algo(param) {
           alert('helloooow');
         }
       </template>
-    </code-highlighter>
+    </code-sample>
 
-    <code-highlighter type="css">
+    <code-sample>
       <template>
         .my-style { display: block; }
 
@@ -55,6 +55,6 @@
 
         :host([hidden]) { display: none; }
       </template>
-    </code-highlighter>
+    </code-sample>
   </body>
 </html>

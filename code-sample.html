@@ -60,7 +60,9 @@
 
         _contentChanged(content) {
           let code = document.createElement('code');
-          code.classList.add(this.type);
+          if (this.type) {
+            code.classList.add(this.type);
+          }
           code.innerHTML = this._entitize(this._cleanIndentation(content));
           this.$.code.appendChild(code);
           hljs.highlightBlock(code);

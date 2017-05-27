@@ -60,13 +60,13 @@
 
         connectedCallback() {
           super.connectedCallback();
-          setTimeout(function() {
+          setTimeout(() => {
             if (this.querySelector('template')) {
               this._content = this.querySelector('template').innerHTML;
             } else if (this.childNodes.length) {
               console.error('<code-sample>:', 'content must be provided inside a <template> tag');
             }
-          }.bind(this), 1);
+          }, 1);
         }
 
         _contentChanged(content) {

@@ -1,9 +1,9 @@
-# WIP: &lt;code-sample&gt;
+# &lt;code-sample&gt;
 
-Custom Element that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
+> A wrapper element for [highlight.js](https://highlightjs.org/)
+
+Custom Element that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.   
 Forget to worry about spaces, HTML entities, etc.
-
-**Warning**: this is a WIP very basic component that suits my own needs but is not finished yet.
 
 ## Usage
 
@@ -69,3 +69,12 @@ Example:
   </template>
 </dom-module>
 ```
+
+### Styling
+
+Included themes contain custom CSS properties to set the background and text color.
+
+* `--code-sample-background`: code background color.
+* `--code-sample-color`: code text color.
+
+You may need to add these CSS properties to your own themes.

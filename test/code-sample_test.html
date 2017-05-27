@@ -37,7 +37,7 @@
       suite('<code-sample> without content inside a <template> tag', () => {
         setup(() => {fixture('noTpl')});
 
-        test('logs an error in console if the content is not provided inside a <template> tag', done => {
+        test('logs an error in console', done => {
           let consoleErrorStub = sinon.stub(window.console, 'error');
           flush(() => {
             assert.isTrue(consoleErrorStub.called);

@@ -21,13 +21,11 @@
     "web-component-tester": "^6.0.0",
     "iron-test-helpers": "PolymerElements/iron-test-helpers#^2.0.0"
   },
-  "license": "MIT",
-  "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+  "license": "https://github.com/kcmr/code-sample/LICENSE.md",
+  "homepage": "https://github.com/kcmr/code-sample/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kcmr/code-sample.git"
+  },
+  "ignore": []
 }

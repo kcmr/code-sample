@@ -1,4 +1,4 @@
-# WIP: &lt;code-highlighter&gt;
+# WIP: &lt;code-sample&gt;
 
 Custom Element that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
 Forget to worry about spaces, HTML entities, etc.
@@ -11,27 +11,27 @@ The code to highlight must be provided inside a `<template>` tag.
 The `type` attribute is **optional** and it corresponds to the `class` applied to `<code>` in [highlight.js](https://highlightjs.org/).
 
 ```html
-<code-highlighter type="html">
+<code-sample type="html">
   <template>
     <p>your code here...</p>
   </template>
-</code-highlighter>
+</code-sample>
 
-<code-highlighter type="css">
+<code-sample type="css">
   <template>
     .my-class {
       background-color: red;
     }
   </template>
-</code-highlighter>
+</code-sample>
 
-<code-highlighter type="javascript">
+<code-sample type="javascript">
   <template>
     function foo() {
       alert('bar');
     }
   </template>
-</code-highlighter>
+</code-sample>
 ```
 
 ## Themes
@@ -41,8 +41,8 @@ The component includes 6 themes that must be imported explicitly.
 Example:
 
 ```html
-<link rel="import" href="../code-highlighter/themes/one-dark.html">
-<link rel="import" href="../code-highlighter/code-highlighter.html">
+<link rel="import" href="../code-sample/themes/one-dark.html">
+<link rel="import" href="../code-sample/code-sample.html">
 ```
 
 ### Available themes
@@ -56,12 +56,12 @@ Example:
 
 ### More themes
 
-You can use another theme by adding one of the [available themes](https://github.com/isagalaev/highlight.js/tree/master/src/styles) for hightlight.js in a shared style (Polymer Style Module) with the `id` `code-highlighter-theme`.
+You can use another theme by adding one of the [available themes](https://github.com/isagalaev/highlight.js/tree/master/src/styles) for hightlight.js in a shared style (Polymer Style Module) with the `id` `code-sample-theme`.
 
 Example:
 
 ```html
-<dom-module id="code-highlighter-theme">
+<dom-module id="code-sample-theme">
   <template>
     <style>
     /* your own styles */

@@ -1,9 +1,32 @@
 # &lt;code-sample&gt;
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://www.webcomponents.org/element/kcmr/code-sample)
 
 > A wrapper element for [highlight.js](https://highlightjs.org/)
 
 Custom Element that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.   
-Forget to worry about spaces, HTML entities, etc.
+Forget to worry about spaces, indentation, HTML entities, etc.
+
+<!---
+```html
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="themes/one-dark.html">
+    <link rel="import" href="code-sample.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<code-sample>
+  <template>
+    <div class="some-class">
+      <p>Lorem ipsum dolor…</p>
+    </div>
+  </template>
+</code-sample>
+```
 
 ## Usage
 
@@ -56,7 +79,7 @@ Example:
 
 ### More themes
 
-You can use another theme by adding one of the [available themes](https://github.com/isagalaev/highlight.js/tree/master/src/styles) for hightlight.js in a shared style (Polymer Style Module) with the `id` `code-sample-theme`.
+You can use another theme by adding one of the [available themes](https://github.com/isagalaev/highlight.js/tree/master/src/styles) for hightlight.js in a shared style ([Polymer Style Module](https://www.polymer-project.org/1.0/docs/devguide/styling#style-modules)) with the id `code-sample-theme`.
 
 Example:
 
@@ -74,14 +97,19 @@ Example:
 
 The following custom CSS properties are available for styling:
 
-* `--code-sample-font-family`: font-family applied to `<pre>` and `<code>` elements.   
-Default: Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace.
-* `--code-sample-font-size`: font-size applied to `<pre>` and `<code>` elements.   
-Default: 14px.
+| Custom property                | Description                                                  | Default      |
+|:-------------------------------|:-------------------------------------------------------------|:-------------|
+| --code-sample-font-family      | font-family applied to `<pre>` and `<code>` elements         | Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace         |
+| --code-sample-font-size        | font-size applied to `<pre>` and `<code>` elements           | 14px        |
 
-Included themes contain custom CSS properties to set the background and text color.
 
-* `--code-sample-background`: code background color.
-* `--code-sample-color`: code text color.
-
+Included themes contain custom CSS properties to set the background and text color.   
 You may need to add these CSS properties to your own themes.
+
+| Custom property                | Description                             | Default     |
+|:-------------------------------|:----------------------------------------|:------------|
+| --code-sample-background       | code background color                   | Depends on the theme         |
+| --code-sample-color            | code text color                         | Depends on the theme         |
+
+
+

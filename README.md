@@ -28,6 +28,7 @@ Forget to worry about spaces, indentation, HTML entities, etc.
 </code-sample>
 ```
 
+
 ## Installation
 
 ### Option 1 (preferred): using bower
@@ -36,7 +37,7 @@ Forget to worry about spaces, indentation, HTML entities, etc.
   $ bower i -S code-sample
   ```
 2. Import Web Components polyfill:
-  ```js
+  ```html
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   ```
 3. Import the theme to be used and the component:

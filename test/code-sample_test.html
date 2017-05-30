@@ -33,6 +33,16 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="render">
+      <template>
+        <code-sample render>
+          <template>
+            <p>iuuu</p>
+          </template>
+        </code-sample>
+      </template>
+    </test-fixture>
+
     <script>
       suite('<code-sample> without content inside a <template> tag', () => {
         setup(() => {fixture('noTpl')});
@@ -87,23 +97,21 @@
         });
       });
 
-      suite('<code-sample type="html"> with type attribute', () => {
+      suite('<code-sample render>', () => {
         let el;
+        setup(() => {
+          el = fixture('render');
+        });
 
-        setup((done) => {
-          el = fixture('default');
-          el.type = 'html';
+        test('renders the code inside a <template>', (done) => {
+          let demo = el.shadowRoot.querySelector('#demo');
+          let tmpl = el.querySelector('template');
           flush(() => {
-            code = el.shadowRoot.querySelector('code');
+            assert.equal(demo.innerHTML, tmpl.innerHTML);
             done();
           });
         });
-
-        test('sets type property as class for the <code>', () => {
-          assert.isTrue(code.classList.contains('html'));
-        });
       });
-
     </script>
 
   </body>

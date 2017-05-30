@@ -59,12 +59,21 @@ Forget to worry about spaces, indentation, HTML entities, etc.
 ## Usage
 
 The code to highlight must be provided inside a `<template>` tag.
-The `type` attribute is **optional** and it corresponds to the `class` applied to `<code>` in [highlight.js](https://highlightjs.org/).
 
 ```html
-<code-sample type="html">
+<code-sample>
   <template>
     <p>your code here...</p>
+  </template>
+</code-sample>
+```
+
+To render the code inside the template, use the boolean attribute `render`.
+
+```html
+<code-sample render>
+  <template>
+    <my-custom-element></my-custom-element>
   </template>
 </code-sample>
 ```
@@ -112,8 +121,11 @@ The following custom CSS properties are available for styling:
 | Custom property                | Description                                                  | Default      |
 |:-------------------------------|:-------------------------------------------------------------|:-------------|
 | --code-sample-font-family      | font-family applied to `<pre>` and `<code>` elements         | Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace         |
-| --code-sample-font-size        | font-size applied to `<pre>` and `<code>` elements           | 14px        |
+| --code-sample-font-size        | font-size applied to `<pre>` and `<code>` elements           | 14px         |
+| --code-sample-demo-padding     | padding applied to the container of the rendered code        | 0 0 20px     |
+| --code-sample-demo             | empty mixin applied to the container of the rendered code    | {}           |
 
+_Note:_ The [CSS mixin shim](https://www.polymer-project.org/2.0/docs/upgrade#css-custom-property-shim) is required to use mixins.
 
 Included themes contain custom CSS properties to set the background and text color.   
 You may need to add these CSS properties to your own themes.

@@ -86,24 +86,6 @@
           assert.equal(hljsStub.getCall(0).args[0], code);
         });
       });
-
-      suite('<code-sample type="html"> with type attribute', () => {
-        let el;
-
-        setup((done) => {
-          el = fixture('default');
-          el.type = 'html';
-          flush(() => {
-            code = el.shadowRoot.querySelector('code');
-            done();
-          });
-        });
-
-        test('sets type property as class for the <code>', () => {
-          assert.isTrue(code.classList.contains('html'));
-        });
-      });
-
     </script>
 
   </body>

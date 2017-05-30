@@ -20,7 +20,7 @@
       }
 
       .demo:not(:empty) {
-        padding: var(--code-sample-demo-padding, 20px 0);
+        padding: var(--code-sample-demo-padding, 0 0 20px);
       }
 
       .demo {
@@ -51,7 +51,7 @@
         static get properties() {
           return {
             /**
-             * Set to true to render the code (typically a web component) inside the template.
+             * Set to true to render the code inside the template.
              */
             render: {
               type: Boolean,

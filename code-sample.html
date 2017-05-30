@@ -64,7 +64,7 @@
           super.connectedCallback();
           setTimeout(() => {
             if (this.querySelector('template')) {
-              this._observer = new Polymer.FlattenedNodesObserver(this.$.content, this._updateContent.bind(this));
+              this._observer = new Polymer.FlattenedNodesObserver(this.$.content, () => this._updateContent());
             } else if (this.childNodes.length) {
               console.error('<code-sample>:', 'content must be provided inside a <template> tag');
             }

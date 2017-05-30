@@ -33,6 +33,16 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="render">
+      <template>
+        <code-sample render>
+          <template>
+            <p>iuuu</p>
+          </template>
+        </code-sample>
+      </template>
+    </test-fixture>
+
     <script>
       suite('<code-sample> without content inside a <template> tag', () => {
         setup(() => {fixture('noTpl')});
@@ -84,6 +94,22 @@
 
         test('calls hljs.highlightBlock() with <code> node as param', () => {
           assert.equal(hljsStub.getCall(0).args[0], code);
+        });
+      });
+
+      suite('<code-sample render>', () => {
+        let el;
+        setup(() => {
+          el = fixture('render');
+        });
+
+        test('renders the code inside a <template>', (done) => {
+          let demo = el.shadowRoot.querySelector('#demo');
+          let tmpl = el.querySelector('template');
+          flush(() => {
+            assert.equal(demo.innerHTML, tmpl.innerHTML);
+            done();
+          });
         });
       });
     </script>

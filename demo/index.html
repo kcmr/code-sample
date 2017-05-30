@@ -4,21 +4,60 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>code-sample demo</title>
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <link rel="import" href="../../transburger-icon/transburger-icon.html">
     <link rel="import" href="../themes/one-dark.html">
     <link rel="import" href="../code-sample.html">
     <style>
-      body { margin: auto; background: #1e2127; }
+      body {
+        margin: auto;
+        background-color: #f0f0f0;
+      }
       @media (min-width: 60em) {
         body { max-width: 60%; }
       }
 
-      code-sample { margin: 20px; }
+      code-sample {
+        margin: 40px 20px;
+        padding: 40px;
+        background-color: #fff;
+      }
+
+      code-sample[render] { padding-top: 10px; }
       .navy-bg { --code-sample-background: #000D25; }
-      .white-bg { --code-sample-background: #f9fbff; }
+      .white-bg { --code-sample-background: #eeeef1; }
     </style>
   </head>
   <body>
+    <code-sample render>
+      <template>
+        <style>
+          .btn {
+            --transburger-icon-button-font-size: inherit;
+            --transburger-icon-button-padding: 0 0 0.13em;
+            --transburger-icon-button-cursor: pointer;
+            --transburger-icon-button-outline: none;
+            --transburger-icon-button-border-radius: 0.25em;
+            --transburger-icon-button-box-shadow: inset 0 -0.25em 0 rgba(0, 0, 0, 0.2);
+            --transburger-icon-button-color: #fff;
+            --transburger-icon-button-background: #006dbe;
+          }
+        </style>
+
+        <transburger-icon class="btn"></transburger-icon>
+      </template>
+    </code-sample>
+    <button id="btn">Change content</button>
+    <script>
+      document.getElementById('btn').addEventListener('click', () => {
+        document.querySelector('code-sample').innerHTML = `
+        <template>
+          <p>new content</p>
+        </template>
+        `;
+      });
+    </script>
+
     <code-sample>
       <template>
         const something = param => {

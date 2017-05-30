@@ -71,6 +71,13 @@
           }, 1);
         }
 
+        disconnectedCallback() {
+          if (this._observer) {
+            this._observer.disconnect();
+            this._observer = null;
+          }
+        }
+
         _updateContent() {
           if (this._code) { this._code.parentNode.removeChild(this._code); }
           if (this._demo) { this.$.demo.innerHTML = ''; }

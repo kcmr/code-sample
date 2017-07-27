@@ -33,81 +33,86 @@
     <pre id="code"></pre>
   </template>
   <script>
-    (function() {
-      /* global hljs */
+    /* global hljs */
 
-      /**
-       * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
-       *
-       * @customElement
-       * @polymer
-       * @demo demo/index.html
-       */
-      class CodeSample extends Polymer.Element {
-        static get is() { return 'code-sample'; }
+    /**
+     * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class CodeSample extends Polymer.Element {
+      static get is() {
+        return 'code-sample';
+      }
 
-        static get properties() {
-          return {
-            /**
-             * Set to true to render the code inside the template.
-             */
-            render: {
-              type: Boolean,
-              value: false
-            }
+      static get properties() {
+        return {
+          /**
+           * Set to true to render the code inside the template.
+           */
+          render: {
+            type: Boolean,
+            value: false
           }
-        }
+        };
+      }
 
-        connectedCallback() {
-          super.connectedCallback();
-          setTimeout(() => {
-            if (this.querySelector('template')) {
-              this._observer = new Polymer.FlattenedNodesObserver(this.$.content, () => this._updateContent());
-            } else if (this.childNodes.length) {
-              console.error('<code-sample>:', 'content must be provided inside a <template> tag');
-            }
-          }, 1);
-        }
-
-        disconnectedCallback() {
-          if (this._observer) {
-            this._observer.disconnect();
-            this._observer = null;
+      connectedCallback() {
+        super.connectedCallback();
+        setTimeout(() => {
+          if (this.querySelector('template')) {
+            this._observer = new Polymer.FlattenedNodesObserver(this.$.content, () => this._updateContent());
+          } else if (this.childNodes.length) {
+            console.error('<code-sample>:', 'content must be provided inside a <template> tag');
           }
-        }
+        }, 1);
+      }
 
-        _updateContent() {
-          if (this._code) { this._code.parentNode.removeChild(this._code); }
-          if (this._demo) { this.$.demo.innerHTML = ''; }
-
-          let nodes = Polymer.FlattenedNodesObserver.getFlattenedNodes(this.$.content);
-          let template = [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
-
-          if (this.render) {
-            this._demo = this.$.demo.appendChild(document.importNode(template.content, true));
-          }
-
-          this._highlight(template.innerHTML);
-        }
-
-        _highlight(str) {
-          this._code = document.createElement('code');
-          this._code.innerHTML = this._entitize(this._cleanIndentation(str));
-          this.$.code.appendChild(this._code);
-          hljs.highlightBlock(this._code);
-        }
-
-        _cleanIndentation(str) {
-          let pattern = str.match(/\s*\n[\t\s]*/);
-          return str.replace(new RegExp(pattern, "g"),'\n');
-        }
-
-        _entitize(str) {
-          return String(str).replace(/=""/g, '').replace(/=&gt;/g, '=>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      disconnectedCallback() {
+        if (this._observer) {
+          this._observer.disconnect();
+          this._observer = null;
         }
       }
 
-      customElements.define(CodeSample.is, CodeSample);
-    }());
+      _updateContent() {
+        if (this._code) {
+          this._code.parentNode.removeChild(this._code);
+        }
+
+        if (this._demo) {
+          this.$.demo.innerHTML = '';
+        }
+
+        let nodes = Polymer.FlattenedNodesObserver.getFlattenedNodes(this.$.content);
+        let template = [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
+
+        if (this.render) {
+          this._demo = this.$.demo.appendChild(document.importNode(template.content, true));
+        }
+
+        this._highlight(template.innerHTML);
+      }
+
+      _highlight(str) {
+        this._code = document.createElement('code');
+        this._code.innerHTML = this._entitize(this._cleanIndentation(str));
+        this.$.code.appendChild(this._code);
+        hljs.highlightBlock(this._code);
+      }
+
+      _cleanIndentation(str) {
+        let pattern = str.match(/\s*\n[\t\s]*/);
+        return str.replace(new RegExp(pattern, 'g'), '\n');
+      }
+
+      _entitize(str) {
+        return String(str).replace(/=""/g, '').replace(/=&gt;/g, '=>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+    }
+
+    customElements.define(CodeSample.is, CodeSample);
   </script>
 </dom-module>

@@ -188,11 +188,11 @@
           return content;
         }
 
-        btn.addEventListener('click', changeContent);
-
         function changeContent() {
           sample.innerHTML = customContent();
         }
+
+        btn.addEventListener('click', changeContent);
       }(document));
     </script>
   </body>

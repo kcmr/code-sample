@@ -68,6 +68,16 @@ The code to highlight must be provided inside a `<template>` tag.
 </code-sample>
 ```
 
+When **used inside a custom element** you'll need to add the attribute `preserve-content` to the inner template to prevent Polymer to process the template's content.
+
+```html
+<code-sample>
+  <template preserve-content>
+    <p>your code here...</p>
+  </template>
+</code-sample>
+```
+
 To render the code inside the template, use the boolean attribute `render`.
 
 ```html

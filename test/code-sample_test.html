@@ -112,6 +112,23 @@
           });
         });
       });
+
+      suite('type attribute', () => {
+        let el;
+        setup(() => {
+          el = fixture('default');
+        });
+
+        test('sets the type value as className for the code element', (done) => {
+          el.type = 'any';
+
+          flush(() => {
+            let code = el.shadowRoot.querySelector('code');
+            assert.isTrue(code.classList.contains('any'));
+            done();
+          });
+        });
+      });
     </script>
 
   </body>

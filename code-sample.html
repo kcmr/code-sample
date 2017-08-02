@@ -55,6 +55,14 @@
           render: {
             type: Boolean,
             value: false
+          },
+
+          /**
+           * Code type (optional). (eg.: html, js, css)
+           * Options are the same as the available classes for `<code>` tag using highlight.js
+           */
+          type: {
+            type: String
           }
         };
       }
@@ -98,6 +106,9 @@
 
       _highlight(str) {
         this._code = document.createElement('code');
+        if (this.type) {
+          this._code.classList.add(this.type);
+        }
         this._code.innerHTML = this._entitize(this._cleanIndentation(str));
         this.$.code.appendChild(this._code);
         hljs.highlightBlock(this._code);

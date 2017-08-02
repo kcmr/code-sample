@@ -88,6 +88,18 @@ To render the code inside the template, use the boolean attribute `render`.
 </code-sample>
 ```
 
+The `type` attribute specifies the language of the sample code (eg.: html, css, js) and is not needed most of the time because it's automatically set. You can use it when your code sample language is not properly detected.
+
+```html
+<code-sample type="css">
+  <template>
+    .some-class {
+      @apply --my-mixin;
+    }
+  </template>
+</code-sample>
+```
+
 ## Themes
 
 The component includes 6 themes that must be imported explicitly.

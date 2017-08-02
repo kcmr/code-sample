@@ -15,7 +15,7 @@
         },
         "transpile": {
           "exclude": ["webcomponentsjs", "custom-elements"],
-          "active": true,
+          "active": false,
           "source": {
             "{{bowerComponents}}/!(${exclude})/*!(\\.min).{js}": "{{bower_components}}",
             "!(${exclude})/*.{js}": "."

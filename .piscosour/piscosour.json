@@ -11,7 +11,7 @@
     "watch": {
       "generate": {
         "polymer2support": {
-          "active": true
+          "active": false
         },
         "transpile": {
           "exclude": ["webcomponentsjs", "custom-elements"],

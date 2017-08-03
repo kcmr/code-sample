@@ -3,7 +3,7 @@
 
 > A wrapper element for [highlight.js](https://highlightjs.org/)
 
-Custom Element that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.   
+A themeable sample code snippet that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.   
 Forget to worry about spaces, indentation, HTML entities, etc.
 
 <!---

@@ -12,7 +12,8 @@
     "highlight.js",
     "highlight",
     "code",
-    "pre"
+    "pre",
+    "theme"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0"

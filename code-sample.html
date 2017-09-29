@@ -5,10 +5,18 @@
 <dom-module id="code-sample">
   <template>
     <style include="code-sample-theme">
-      :host { display: block; }
-      :host([hidden]) { display: none; }
+      :host {
+        display: block;
+      }
 
-      pre { margin: 0; }
+      :host([hidden]) {
+        display: none;
+      }
+
+      pre {
+        margin: 0;
+      }
+
       pre, code {
         font-family: var(--code-sample-font-family, Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace);
         font-size: var(--code-sample-font-size, 14px);
@@ -26,11 +34,37 @@
       .demo {
         @apply --code-sample-demo;
       }
+
+      #code-container {
+        position: relative;
+      }
+
+      #code-container:hover > button {
+        display: block;
+      }
+
+      button {
+        background: #e0e0e0;
+        border: none;
+        cursor: pointer;
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-transform: uppercase;
+
+        @apply --code-sample-copy-clipboard-button;
+      }
     </style>
 
     <div id="demo" class="demo"></div>
+
     <slot id="content"></slot>
-    <pre id="code"></pre>
+
+    <div id="code-container">
+      <button id="copy-button" title="Copy to clipboard" on-click="_copyToClipboard">Copy</button>
+      <pre id="code"></pre>
+    </div>
   </template>
   <script>
     /* global hljs */
@@ -94,8 +128,7 @@
           this.$.demo.innerHTML = '';
         }
 
-        let nodes = Polymer.FlattenedNodesObserver.getFlattenedNodes(this.$.content);
-        let template = [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
+        let template = this._getCodeTemplate();
 
         if (this.render) {
           this._demo = this.$.demo.appendChild(document.importNode(template.content, true));
@@ -122,6 +155,41 @@
       _entitize(str) {
         return String(str).replace(/=""/g, '').replace(/=&gt;/g, '=>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       }
+
+      _getCodeTemplate() {
+        let nodes = Polymer.FlattenedNodesObserver.getFlattenedNodes(this.$.content);
+        return [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
+      }
+
+      _copyToClipboard() {
+        let tempNode = document.createElement('input');
+        document.body.appendChild(tempNode);
+        tempNode.value = this._getCodeTemplate().innerHTML;
+        tempNode.select();
+
+        let result = false;
+
+        try {
+          result = document.execCommand('copy', false);
+          this.$['copy-button'].textContent = 'Done';
+        } catch (err) {
+          // Copy command is not available
+          console.error(err);
+          this.$['copy-button'].textContent = 'Error';
+        }
+
+        tempNode.remove();
+
+        // Return to the copy button after a second.
+        setTimeout(this._resetCopyButtonState.bind(this), 1000);
+
+        return result;
+      }
+
+      _resetCopyButtonState() {
+        this.$['copy-button'].textContent = 'Copy';
+      }
+
     }
 
     customElements.define(CodeSample.is, CodeSample);

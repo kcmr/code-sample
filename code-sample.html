@@ -176,20 +176,22 @@
       }
 
       _copyToClipboard() {
-        let tempNode = document.createElement('input');
+        let tempNode = document.createElement('textarea');
         document.body.appendChild(tempNode);
         tempNode.value = this._getCodeTemplate().innerHTML;
         tempNode.select();
 
         let result = false;
 
+        let copyButton = this.shadowRoot.querySelector("#copy-button");
+
         try {
           result = document.execCommand('copy', false);
-          this.$['copy-button'].textContent = 'Done';
+          copyButton.textContent = 'Done';
         } catch (err) {
           // Copy command is not available
           console.error(err);
-          this.$['copy-button'].textContent = 'Error';
+          copyButton.textContent = 'Error';
         }
 
         tempNode.remove();
@@ -201,7 +203,7 @@
       }
 
       _resetCopyButtonState() {
-        this.$['copy-button'].textContent = 'Copy';
+        this.shadowRoot.querySelector("#copy-button").textContent = 'Copy';
       }
 
     }

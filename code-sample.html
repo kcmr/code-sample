@@ -62,7 +62,9 @@
     <slot id="content"></slot>
 
     <div id="code-container">
-      <button id="copy-button" title="Copy to clipboard" on-click="_copyToClipboard">Copy</button>
+      <template is="dom-if" if="[[copyClipboardButton]]">
+        <button id="copy-button" title="Copy to clipboard" on-click="_copyToClipboard">Copy</button>
+      </template>
       <pre id="code"></pre>
     </div>
   </template>
@@ -83,6 +85,10 @@
 
       static get properties() {
         return {
+          copyClipboardButton: {
+            type: Boolean,
+            value: false
+          },
           /**
            * Set to true to render the code inside the template.
            */

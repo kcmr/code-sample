@@ -9,7 +9,8 @@
         display: block;
       }
 
-      :host([hidden]) {
+      :host([hidden]),
+      [hidden] {
         display: none;
       }
 
@@ -46,8 +47,6 @@
       }
 
       #code-container:hover > button {
-        display: block;
-
         @apply --code-sample-code-container-hover-button;
       }
 
@@ -70,9 +69,7 @@
     <slot id="content"></slot>
 
     <div id="code-container">
-      <template is="dom-if" if="[[copyClipboardButton]]">
-        <button id="copy-button" title="Copy to clipboard" on-click="_copyToClipboard">Copy</button>
-      </template>
+      <button hidden="[[!copyClipboardButton]]" id="copy-button" title="Copy to clipboard" on-click="_copyToClipboard">Copy</button>
       <pre id="code"></pre>
     </div>
   </template>

@@ -11,6 +11,9 @@ env:
         d9EMifuf4z2vh//YQ9/4zQj9xCjT6dpdOpI6bDRu3BVa+JhI1gKrHTNNQNQciSe8vIUvW2S6is0PC9YijrJ/Tf0uQf7GIMxt0yUOI67Qqjv0X/SIMLB+FBog/kDFnBOLlvEvT8nRHzjCNdaxK6aj4vF+RhBYVVpvs+1tVcYA07vNvEkSdXnQm0uOHrgNSdBjgrIuSdW2PVaupIKBUMqpRND/Web5Hc9INuE9+eX9nkNjHr3uZnzp273vJGrZMVYgSpXauvaFiteqmK1OdEgUvCfqjC6fvSA+m+srhmgI+r4AvzDq/NshBOSMhx3F6kOi+FE2iAJmgCZsHakf/W73rcgovOmEra6JyU2ALI45faoR5y4rrjIBlQFr/gJ7mUI5WzWcHYIFK3o2e8F38SYm0OHvZmH8v9jljtpA74cXg5QMk/PcU2pPZxHycdBwjh+VIyTDFlOvvSfkP5mQAAL1O63tLkyd1YXm//aVdGeBPxWHuQDB5cAs0NsHvJ5M4lQHkNPHNqn09V2jYsAzDs3BELeFXWVBdZbm0XrI01luwBkOtWnuEEpSqebHfk8jxRCTYwXedlQwX2zKGGjeRagQ/75RF2RGtu0ijTUjYnmKV3ZPVJV7no2A3q+lexVV7yswXReQTxqJPeZoP8MVJJ05a5hLp4PnT9CpgCV3FpHS5dA=
 node_js: stable
 addons:
+  sauce_connect:
+    username: "kcmr"
+    access_key: "a9164a8d-2362-4cd7-8b0d-fdee0619041a"
   firefox: latest
   apt:
     sources:

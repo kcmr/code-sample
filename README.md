@@ -1,4 +1,5 @@
 # &lt;code-sample&gt;
+[![Build Status](https://img.shields.io/travis/kcmr/code-sample/master.svg?style=flat-square)](https://travis-ci.org/kcmr/code-sample) 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://www.webcomponents.org/element/kcmr/code-sample)
 
 > A wrapper element for [highlight.js](https://highlightjs.org/)

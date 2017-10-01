@@ -117,6 +117,7 @@
           let demo = el.shadowRoot.querySelector('#demo');
           let tmpl = el.querySelector('template');
           flush(() => {
+            demo.querySelector('p').removeAttribute('class');
             assert.equal(demo.innerHTML, tmpl.innerHTML);
             done();
           });

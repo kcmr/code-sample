@@ -140,12 +140,16 @@ Example:
 
 The following custom CSS properties are available for styling:
 
-| Custom property                | Description                                                  | Default      |
-|:-------------------------------|:-------------------------------------------------------------|:-------------|
-| --code-sample-font-family      | font-family applied to `<pre>` and `<code>` elements         | Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace         |
-| --code-sample-font-size        | font-size applied to `<pre>` and `<code>` elements           | 14px         |
-| --code-sample-demo-padding     | padding applied to the container of the rendered code        | 0 0 20px     |
-| --code-sample-demo             | empty mixin applied to the container of the rendered code    | {}           |
+|              Custom property              |                                      Description                                      |                               Default                                |
+| :---------------------------------------- | :------------------------------------------------------------------------------------ | :------------------------------------------------------------------- |
+| --code-sample-font-family                 | font-family applied to `<pre>` and `<code>` elements                                  | Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace |
+| --code-sample-font-size                   | font-size applied to `<pre>` and `<code>` elements                                    | 14px                                                                 |
+| --code-sample-demo-padding                | padding applied to the container of the rendered code                                 | 0 0 20px                                                             |
+| --code-sample-demo                        | empty mixin applied to the container of the rendered code                             | {}                                                                   |
+| --code-sample-code-container              | empty mixin applied to code container                                                 | {}                                                                   |
+| --code-sample-code-container-hover        | empty mixin applied to code container on :hover                                       | {}                                                                   |
+| --code-sample-code-container-hover-button | empty mixin applied to the copy to clipboard button when the code container on :hover | {}                                                                   |
+| --code-sample-copy-clipboard-button       | empty mixin applied to the copy to clipboard button                                   | {}                                                                   |
 
 _Note:_ The [CSS mixin shim](https://www.polymer-project.org/2.0/docs/upgrade#css-custom-property-shim) is required to use mixins.
 

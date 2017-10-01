@@ -1,0 +1,25 @@
+language: node_js
+sudo: required
+before_script:
+  - npm install -g polymer-cli
+  - polymer install --variants
+env:
+  global:
+    - secure: >-
+        LfslqYRGmX4ZnYkCq6iIoLH2a150KvvinEQU2oAqB6C3cLHF8lV5ugpt+6/CPl1mTfFF6uJOH+n+WPgShbuZrWj8mSi/beXY1R1SJtKL8Q/2JgtKnslYAqYq6GCrSyxmiGLnNQfYKQGrfCc+cqtGvVu2eBUMdLHbNhW9ifLOfnXItxYztLlewJckK692xDVqIbULGIXtOWj1snOEP4T4gdKfbefwIdjM8w7M7vlciaFmbUpKiuMpmnOt6hPVIuArMLa2FZV9Tvclk14ewfwWHI+jcH6i0kJpApM91xsw95P76397VzKYZYRnklC2d0Z4uiBZrGPgixmW86hvMvd6kYWZFPwoXL+ZWVNDveChhWjAv0pwj7Y+icT3Yr983dv0IP/PDFlKygO6Wsk4dm3IIdp5G3e+Zk0/EGz9rc4/Jlv05H58XsCLzF8Ih5S8A1ma0LWl7vJeVHceHkZUz2yOd3AI//91tRpPUu7+K8N0HROBvvGzv3KmuQHsJK4Qh9Q7kjfKRT886eEo8Gfzlwy0yZZt0dxspRwKH4evzT1kOcqilwSuoKePZbNNQFTDwi55hfbaOMztkZIQCiH6oTIMKCqW/DbfDsYjFadb2pF1SzHp46qmF4b51ldrFzVTPAXfhxMM0+cBNC/sWlFk6/3H8rrPJoufTi7tSBHgDDwpsaI=
+    - secure: >-
+        d9EMifuf4z2vh//YQ9/4zQj9xCjT6dpdOpI6bDRu3BVa+JhI1gKrHTNNQNQciSe8vIUvW2S6is0PC9YijrJ/Tf0uQf7GIMxt0yUOI67Qqjv0X/SIMLB+FBog/kDFnBOLlvEvT8nRHzjCNdaxK6aj4vF+RhBYVVpvs+1tVcYA07vNvEkSdXnQm0uOHrgNSdBjgrIuSdW2PVaupIKBUMqpRND/Web5Hc9INuE9+eX9nkNjHr3uZnzp273vJGrZMVYgSpXauvaFiteqmK1OdEgUvCfqjC6fvSA+m+srhmgI+r4AvzDq/NshBOSMhx3F6kOi+FE2iAJmgCZsHakf/W73rcgovOmEra6JyU2ALI45faoR5y4rrjIBlQFr/gJ7mUI5WzWcHYIFK3o2e8F38SYm0OHvZmH8v9jljtpA74cXg5QMk/PcU2pPZxHycdBwjh+VIyTDFlOvvSfkP5mQAAL1O63tLkyd1YXm//aVdGeBPxWHuQDB5cAs0NsHvJ5M4lQHkNPHNqn09V2jYsAzDs3BELeFXWVBdZbm0XrI01luwBkOtWnuEEpSqebHfk8jxRCTYwXedlQwX2zKGGjeRagQ/75RF2RGtu0ijTUjYnmKV3ZPVJV7no2A3q+lexVV7yswXReQTxqJPeZoP8MVJJ05a5hLp4PnT9CpgCV3FpHS5dA=
+node_js: stable
+addons:
+  firefox: latest
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+script:
+  - xvfb-run polymer test
+  - >-
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test -s 'default';
+    fi
+dist: trusty

@@ -43,6 +43,16 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="copy">
+      <template>
+        <code-sample copy-clipboard-button>
+          <template>
+            <p>wiaa</p>
+          </template>
+        </code-sample>
+      </template>
+    </test-fixture>
+
     <script>
       suite('<code-sample> without content inside a <template> tag', () => {
         setup(() => {fixture('noTpl')});
@@ -125,6 +135,46 @@
           flush(() => {
             let code = el.shadowRoot.querySelector('code');
             assert.isTrue(code.classList.contains('any'));
+            done();
+          });
+        });
+      });
+
+      suite('<code-sample copy-clipboard-button>', () => {
+        let el;
+        let btn;
+        setup(() => {
+          el = fixture('copy');
+          btn = el.shadowRoot.querySelector('button');
+        });
+
+        test('copy button is visible', () => {
+          assert.isFalse(btn.hasAttribute('hidden'));
+        });
+
+        test('copy button is not visible if copyClipboardButton is false', () => {
+          el.removeAttribute('copy-clipboard-button');
+          assert.isTrue(btn.hasAttribute('hidden'));
+        });
+
+        test('clicking on copy button copies code to clipboard', () => {
+          let stub = sinon.stub(document, 'execCommand');
+          btn.click();
+          assert.equal(stub.getCall(0).args[0], 'copy');
+        });
+
+        test('copy button text changes to "Done" after clicking on it', () => {
+          let initialText = btn.textContent;
+          btn.click();
+          assert.notEqual(btn.textContent, initialText);
+          assert.equal(btn.textContent, 'Done');
+        });
+
+        test('copy button text is reset to "Copy" after changing to "Done"', (done) => {
+          window.setTimeout = function(cb) { cb.call(el); }
+          btn.click();
+          flush(() => {
+            assert.equal(btn.textContent, 'Copy');
             done();
           });
         });

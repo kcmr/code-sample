@@ -37,17 +37,25 @@
 
       #code-container {
         position: relative;
+
+        @apply --code-sample-code-container;
+      }
+
+      #code-container:hover {
+        @apply --code-sample-code-container-hover;
       }
 
       #code-container:hover > button {
         display: block;
+
+        @apply --code-sample-code-container-hover-button;
       }
 
       button {
         background: #e0e0e0;
         border: none;
         cursor: pointer;
-        display: none;
+        display: block;
         position: absolute;
         right: 0;
         top: 0;

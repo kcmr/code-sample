@@ -175,12 +175,12 @@
       _copyToClipboard() {
         let tempNode = document.createElement('textarea');
         document.body.appendChild(tempNode);
-        tempNode.value = this._getCodeTemplate().innerHTML;
+        tempNode.value = this._cleanIndentation(this._getCodeTemplate().innerHTML);
         tempNode.select();
 
         let result = false;
 
-        let copyButton = this.shadowRoot.querySelector("#copy-button");
+        let copyButton = this.shadowRoot.querySelector('#copy-button');
 
         try {
           result = document.execCommand('copy', false);
@@ -200,7 +200,7 @@
       }
 
       _resetCopyButtonState() {
-        this.shadowRoot.querySelector("#copy-button").textContent = 'Copy';
+        this.shadowRoot.querySelector('#copy-button').textContent = 'Copy';
       }
 
     }

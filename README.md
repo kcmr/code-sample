@@ -88,6 +88,16 @@ To render the code inside the template, use the boolean attribute `render`.
 </code-sample>
 ```
 
+To display a **copy to clipboard** button, use the boolean attribute `copy-clipboard-button`:
+
+```html
+<code-sample copy-clipboard-button>
+  <template>
+    <p>your code here...</p>
+  </template>
+</code-sample>
+```
+
 The `type` attribute specifies the language of the sample code (eg.: html, css, js) and is not needed most of the time because it's automatically set. You can use it when your code sample language is not properly detected.
 
 ```html

@@ -162,7 +162,7 @@
       }
 
       _entitize(str) {
-        return String(str).replace(/=""/g, '').replace(/=&gt;/g, '=>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        return String(str).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/=""/g, '').replace(/=&gt;/g, '=>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       }
 
       _getCodeTemplate() {

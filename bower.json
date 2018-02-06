@@ -23,7 +23,7 @@
     "iron-test-helpers": "PolymerElements/iron-test-helpers#^2.0.0",
     "transburger-icon": "^3.0.1"
   },
-  "license": "https://github.com/kcmr/code-sample/LICENSE.md",
+  "license": "MIT",
   "homepage": "https://github.com/kcmr/code-sample/",
   "repository": {
     "type": "git",

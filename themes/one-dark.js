@@ -1,4 +1,7 @@
-<dom-module id="code-sample-theme">
+const $_documentContainer = document.createElement('template');
+$_documentContainer.setAttribute('style', 'display: none;');
+
+$_documentContainer.innerHTML = `<dom-module id="code-sample-theme">
   <template>
     <style>
       /*
@@ -103,4 +106,6 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);

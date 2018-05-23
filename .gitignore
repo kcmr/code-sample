@@ -4,3 +4,5 @@ coverage-reports/
 
 *.iml
 
+
+node_modules

@@ -1,0 +1,37 @@
+{
+  "description": "Wrapper element for highlight.js",
+  "keywords": [
+    "polymer",
+    "web-component",
+    "syntax highlighting",
+    "highlight.js",
+    "highlight",
+    "code",
+    "pre",
+    "theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kcmr/code-sample.git"
+  },
+  "homepage": "https://github.com/kcmr/code-sample/",
+  "name": "@polymer/code-sample",
+  "version": "1.0.0",
+  "main": "code-sample.js",
+  "author": "Kus Cámara <kus.camara@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "wct-browser-legacy": "^1.0.0",
+    "wct-istanbul": "^0.14.2",
+    "web-component-tester": "^6.6.0"
+  },
+  "scripts": {
+    "serve": "polymer serve",
+    "test:sauce": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm",
+    "test": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm --skip-plugin sauce"
+  }
+}

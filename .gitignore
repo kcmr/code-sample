@@ -1,6 +1,3 @@
-.DS_Store
 bower_components/
-coverage-reports/
-
-*.iml
-
+coverage*/
+node_modules

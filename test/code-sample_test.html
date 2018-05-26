@@ -3,12 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <link rel="import" href="../code-sample.html">
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+    <script type="module" src="../code-sample.js"></script>
   </head>
   <body>
-
     <test-fixture id="default">
       <template>
         <code-sample>
@@ -53,7 +52,7 @@
       </template>
     </test-fixture>
 
-    <script>
+    <script type="module">
       suite('<code-sample> without content inside a <template> tag', () => {
         setup(() => {fixture('noTpl')});
 
@@ -181,6 +180,5 @@
         });
       });
     </script>
-
   </body>
 </html>

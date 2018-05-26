@@ -35,7 +35,7 @@ Forget to worry about spaces, indentation, HTML entities, etc.
 
 1. Install the component using Npm:
   ```bash
-  $ npm i -S code-sample
+  $ npm i -S @kuscamra/code-sample
   ```
 2. Import Web Components loader (optional):
   ```html

@@ -15,8 +15,8 @@
     "url": "git://github.com/kcmr/code-sample.git"
   },
   "homepage": "https://github.com/kcmr/code-sample/",
-  "name": "@polymer/code-sample",
-  "version": "1.0.0",
+  "name": "@kuscamara/code-sample",
+  "version": "1.0.1",
   "main": "code-sample.js",
   "author": "Kus Cámara <kus.camara@gmail.com>",
   "license": "MIT",
@@ -33,5 +33,11 @@
     "serve": "polymer serve",
     "test:sauce": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm",
     "test": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm --skip-plugin sauce"
+  },
+  "bugs": {
+    "url": "https://github.com/kcmr/code-sample/issues"
+  },
+  "directories": {
+    "test": "test"
   }
 }

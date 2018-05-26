@@ -31,6 +31,6 @@
   },
   "scripts": {
     "test:sauce": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm",
-    "test": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm --skip-plugin sauce"
+    "test:local": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm --skip-plugin sauce"
   }
 }

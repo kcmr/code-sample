@@ -1,7 +1,7 @@
 language: node_js
 sudo: required
 before_script:
-  - npm instal
+  - npm install
 env:
   global:
     - secure: 8k0dq8qt0SgD2jzb+QsQZuEv1dLp6GnTJnYwQ3g2BahPJwTrx3jn0OE1NR5r7z9gZM6lbODCQyAlOdMpjK7jFrAhI+E/3iLDp73agosqj499BPfNvZqIjflddp4XuUYi8Pid8gfzcl/5R4tG+HMXRWuvMeJ/76K9dA5kPJSjt/+Q7NTFNWnhAWrPo442BRWoZJ2oCV1DPCRk3Uo85Acc+dSIHrlmcQRV9w6xWbVhOkNzy+gE+Cw+898OhlHqQ90YFUvP8EW6pJPyL2eGMJA5W7FGXxmZqQT++mVgoKU0tjKOaOSXkoaH+J7JwvElFl4Jne7Oq6fQTcGhBkV3B2jluZBXZSysMZguxbQyI/VUDYft5Bl4toEdd8Ey65Em8jDThJN2UuGNl4cjSSZXt2UhhicmzgcJAjCy7E9dZ/aQJhMW5g69b6RpWoFKCjhT/9J0IACCQk7G91Upkkh3tON6sRBl+di/Mry05XVyYyAalKmE6GbWN3Wjsr2qelbr5Z9JWuGQMSbR/ge5hsliUGLcqeSZJ4iItCh/m6UvmuHMrKQyhRV8p7ZVdzQuFMkBmglR/ioVygnepQbIBuUzuoB4oswkjf1KhtafpW3HYQ1xtrFVbkjNN+ig4ezmSaHLCflP6SsyaUlpKMmTXkwCmhQxfmRQ/+AfLsKyfIPmbRCBcNw=

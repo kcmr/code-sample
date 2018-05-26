@@ -158,7 +158,7 @@ class CodeSample extends PolymerElement {
   }
 
   _cleanIndentation(str) {
-    let pattern = str.match(/\s*\n[\t\s]*/);
+    const pattern = str.match(/\s*\n[\t\s]*/);
     return str.replace(new RegExp(pattern, 'g'), '\n');
   }
 
@@ -175,19 +175,19 @@ class CodeSample extends PolymerElement {
   }
 
   _getCodeTemplate() {
-    let nodes = FlattenedNodesObserver.getFlattenedNodes(this.$.content);
+    const nodes = FlattenedNodesObserver.getFlattenedNodes(this.$.content);
     return [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
   }
 
   _copyToClipboard() {
-    let tempNode = document.createElement('textarea');
+    const tempNode = document.createElement('textarea');
     document.body.appendChild(tempNode);
     tempNode.value = this._cleanIndentation(this._getCodeTemplate().innerHTML);
     tempNode.select();
 
     let result = false;
 
-    let copyButton = this.shadowRoot.querySelector('#copy-button');
+    const copyButton = this.shadowRoot.querySelector('#copy-button');
 
     try {
       result = document.execCommand('copy', false);

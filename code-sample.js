@@ -138,7 +138,7 @@ class CodeSample extends PolymerElement {
       this.$.demo.innerHTML = '';
     }
 
-    let template = this._getCodeTemplate();
+    const template = this._getCodeTemplate();
 
     if (this.render) {
       this._demo = this.$.demo.appendChild(document.importNode(template.content, true));

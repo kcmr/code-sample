@@ -1,5 +1,6 @@
 body {
-  font-family: Roboto, sans-serif;
+  font: caption;
+  font-size: 100%;
   background: #E6E8E8;
   -webkit-tap-highlight-color: transparent;
 }

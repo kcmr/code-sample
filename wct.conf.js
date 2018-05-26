@@ -5,7 +5,10 @@ module.exports = {
   expanded: true,
   plugins: {
     local: {
-      browsers: ['chrome'],
+      browsers: [
+        'chrome',
+        'firefox',
+      ],
     },
     istanbul: {
       dir: './coverage',
@@ -16,11 +19,11 @@ module.exports = {
         'json',
       ],
       include: [
-        '**/code-sample.js'
+        '**/code-sample.js',
       ],
       exclude: [
         '/polymer/polymer.js',
-        '/platform/platform.js'
+        '/platform/platform.js',
       ],
       thresholds: {
         global: {
@@ -31,5 +34,16 @@ module.exports = {
         },
       },
     },
+    sauce: {
+      browsers: [{
+        browserName: 'MicrosoftEdge',
+        platform: 'Windows 10',
+        version: '17.17134',
+      }, {
+        browserName: 'safari',
+        platform: 'macOS 10.13',
+        version: '11.0',
+      }],
+    }
   },
 };

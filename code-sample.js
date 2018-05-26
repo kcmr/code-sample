@@ -1,6 +1,7 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import './highlight-import.js';
+
 /* global hljs */
 
 /**
@@ -79,7 +80,7 @@ class CodeSample extends PolymerElement {
       <button hidden="[[!copyClipboardButton]]" id="copy-button" title="Copy to clipboard" on-click="_copyToClipboard">Copy</button>
       <pre id="code"></pre>
     </div>
-`;
+  `;
   }
 
   static get is() {
@@ -162,7 +163,15 @@ class CodeSample extends PolymerElement {
   }
 
   _entitize(str) {
-    return String(str).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/=""/g, '').replace(/=&gt;/g, '=>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    return String(str)
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/=""/g, '')
+      .replace(/=&gt;/g, '=>')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
   _getCodeTemplate() {

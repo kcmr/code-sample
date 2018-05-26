@@ -9,9 +9,18 @@ module.exports = {
         'chrome',
         'firefox',
       ],
+      browserOptions: {
+        chrome: [
+          'headless',
+          'disable-gpu',
+          'no-sandbox'
+        ],
+        firefox: [
+          '-headless',
+        ],
+      },
     },
     istanbul: {
-      dir: './coverage',
       reporters: [
         'text',
         'text-summary',

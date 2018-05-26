@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/kcmr/code-sample/",
   "name": "@kuscamara/code-sample",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "code-sample.js",
   "author": "Kus Cámara <kus.camara@gmail.com>",
   "license": "MIT",

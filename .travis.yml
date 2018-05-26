@@ -1,7 +1,7 @@
 language: node_js
 sudo: required
 before_script:
-  - npm install -g polymer-cli
+  - npm install -g polymer-cli wct-istanbul
   - npm install
 env:
   global:
@@ -16,7 +16,7 @@ addons:
     packages:
       - google-chrome-stable
 script:
-  - npm run test:sauce
-  - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then npm run test:sauce; fi'
+  - xvfb-run polymer test --module-resolution=node --npm --skip-plugin sauce
+  - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test --module-resolution=node --npm --skip-plugin local; fi'
 dist: trusty
 

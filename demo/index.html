@@ -58,6 +58,33 @@
 
       <div class="demo">
         <div class="demo-text">
+          <h1>Tagged template literals</h1>
+        </div>
+
+        <div class="demo-sample">
+          <p>Set the <code>type</code> attribute to <b>js</b>, <b>jsx</b> or <b>javascript</b> when using tagged template literals.</p>
+
+          <code-sample type="js">
+            <template>
+              class MyElement extends PolymerElement {
+                static get template() {
+                  return html`
+                    <style>
+                      :host {
+                        display: block;
+                      }
+                    </style>
+                    <p>Hello world!</p>
+                  `;
+                }
+              }
+            </template>
+          </code-sample>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-text">
           <h1>CSS</h1>
         </div>
 

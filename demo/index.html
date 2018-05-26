@@ -87,18 +87,25 @@
             <template>
               <style>
                 .btn {
-                  --transburger-icon-button-font-size: inherit;
-                  --transburger-icon-button-padding: 0 0 0.13em;
-                  --transburger-icon-button-cursor: pointer;
-                  --transburger-icon-button-outline: none;
-                  --transburger-icon-button-border-radius: 0.25em;
-                  --transburger-icon-button-box-shadow: inset 0 -0.25em 0 rgba(0, 0, 0, 0.2);
-                  --transburger-icon-button-color: #fff;
-                  --transburger-icon-button-background: #006dbe;
+                  all: initial;
+                  font: caption;
+                  font-size: 100%;
+                  padding: 10px 20px 12px;
+                  cursor: pointer;
+                  outline: none;
+                  border-radius: 0.25em;
+                  box-shadow: inset 0 -0.25em 0 rgba(0, 0, 0, 0.2);
+                  color: #fff;
+                  background-color: #006dbe;
+                  position: relative;
+                }
+                .btn:active {
+                  top: 1px;
+                  background-color: #0056ab;
                 }
               </style>
 
-              <transburger-icon class="btn"></transburger-icon>
+              <button class="btn">Hi unicorn!</button>
             </template>
           </code-sample>
         </div>

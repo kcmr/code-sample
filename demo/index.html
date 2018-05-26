@@ -164,53 +164,46 @@
       </div>
     </div>
 
-    <script type="module">
-import '../themes/one-dark.js';
-import '../code-sample.js';
-(function(d) {
-  const btn = d.querySelector('#changeContent');
-  const sample = d.querySelector('#sample');
-  const obj = {
-    prop1: 'value',
-    prop2: {
-      subProp1: 'something',
-      subProp2: true,
-      subProp3: [{
-        subSub1: 'a',
-        subSub2: 'b'
-      }, {
-        subSub1: 'c',
-        subSub2: 'd'
-      }]
-    }
-  };
+    <script>
+      (function(d) {
+        const btn = d.querySelector('#changeContent');
+        const sample = d.querySelector('#sample');
+        const obj = {
+          prop1: 'value',
+          prop2: {
+            subProp1: 'something',
+            subProp2: true,
+            subProp3: [{
+              subSub1: 'a',
+              subSub2: 'b'
+            }, {
+              subSub1: 'c',
+              subSub2: 'd'
+            }]
+          }
+        };
 
-  let initial = true;
+        let initial = true;
 
-  function customContent() {
-    let content;
-    if (initial) {
-      content = `
-        <template>
-          ${JSON.stringify(obj, null, 2)}
-        </template>`;
-      initial = false;
-    } else {
-      content = `
-        <template>
-          <p>Initial content.</p>
-        </template>`;
-      initial = true;
-    }
-    return content;
-  }
+        function customContent() {
+          const content = (initial)
+            ? `<template>
+                ${JSON.stringify(obj, null, 2)}
+              </template>`
+            : `<template>
+                <p>Initial content.</p>
+              </template>`;
 
-  function changeContent() {
-    sample.innerHTML = customContent();
-  }
+          initial = !initial;
+          return content;
+        }
 
-  btn.addEventListener('click', changeContent);
-}(document));
-</script>
+        function changeContent() {
+          sample.innerHTML = customContent();
+        }
+
+        btn.addEventListener('click', changeContent);
+      }(document));
+    </script>
   </body>
 </html>

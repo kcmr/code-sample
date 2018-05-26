@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>code-sample demo</title>
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <link rel="import" href="../../transburger-icon/transburger-icon.html">
-    <link rel="import" href="../themes/one-dark.html">
-    <link rel="import" href="../code-sample.html">
+    <script type="module" src="../themes/one-dark.js"></script>
+    <script type="module" src="../code-sample.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400">
     <link rel="stylesheet" href="css/demo.css">
     <style>
@@ -166,51 +164,53 @@
       </div>
     </div>
 
-    <script>
-      (function(d) {
-        const btn = d.querySelector('#changeContent');
-        const sample = d.querySelector('#sample');
-        const obj = {
-          prop1: 'value',
-          prop2: {
-            subProp1: 'something',
-            subProp2: true,
-            subProp3: [{
-              subSub1: 'a',
-              subSub2: 'b'
-            }, {
-              subSub1: 'c',
-              subSub2: 'd'
-            }]
-          }
-        };
+    <script type="module">
+import '../themes/one-dark.js';
+import '../code-sample.js';
+(function(d) {
+  const btn = d.querySelector('#changeContent');
+  const sample = d.querySelector('#sample');
+  const obj = {
+    prop1: 'value',
+    prop2: {
+      subProp1: 'something',
+      subProp2: true,
+      subProp3: [{
+        subSub1: 'a',
+        subSub2: 'b'
+      }, {
+        subSub1: 'c',
+        subSub2: 'd'
+      }]
+    }
+  };
 
-        let initial = true;
+  let initial = true;
 
-        function customContent() {
-          let content;
-          if (initial) {
-            content = `
-              <template>
-                ${JSON.stringify(obj, null, 2)}
-              </template>`;
-            initial = false;
-          } else {
-            content = `
-              <template>
-                <p>Initial content.</p>
-              </template>`;
-            initial = true;
-          }
-          return content;
-        }
+  function customContent() {
+    let content;
+    if (initial) {
+      content = `
+        <template>
+          ${JSON.stringify(obj, null, 2)}
+        </template>`;
+      initial = false;
+    } else {
+      content = `
+        <template>
+          <p>Initial content.</p>
+        </template>`;
+      initial = true;
+    }
+    return content;
+  }
 
-        function changeContent() {
-          sample.innerHTML = customContent();
-        }
+  function changeContent() {
+    sample.innerHTML = customContent();
+  }
 
-        btn.addEventListener('click', changeContent);
-      }(document));
-    </script>
+  btn.addEventListener('click', changeContent);
+}(document));
+</script>
   </body>
 </html>

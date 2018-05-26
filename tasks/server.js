@@ -1,28 +1,15 @@
 'use strict';
 
 const browserSync = require('browser-sync');
-
-const config = {
-  browsersync: {
-    port: 5000,
-    open: false,
-    notify: false,
-    ghostMode: false,
-    reloadOnRestart: true,
-    server: {
-      baseDir: ['./'],
-      index: 'index.html',
-      routes: {
-        '/': './node_modules'
-      }
-    }
-  },
-  watch: {
-    sources: '**/*.{html,js,css}'
-  }
-};
+const config = require('./config');
+const manifest = require('../package.json');
+const component = manifest.name;
+const serverConfig = JSON.parse(
+  JSON.stringify(config.server)
+    .replace(/{{component}}/g, component)
+  );
 
 browserSync
-  .init(config.browsersync)
+  .init(serverConfig)
   .watch(config.watch.sources)
   .on('change', browserSync.reload);

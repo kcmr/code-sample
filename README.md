@@ -8,19 +8,6 @@
 A themeable sample code snippet that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.   
 Forget to worry about spaces, indentation, HTML entities, etc.
 
-<!---
-```html
-<custom-element-demo>
-  <template>
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../themes/one-dark.js"></script>
-    <script type="module" src="../code-sample.js"></script>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
-
 ```html
 <code-sample>
   <template>
@@ -43,8 +30,8 @@ Forget to worry about spaces, indentation, HTML entities, etc.
   ```
 3. Import the theme to be used and the component:
   ```html
-  <script type="module" src="node_modules/code-sample/themes/one-dark.js"></script>
-  <script type="module" src="node_modules/code-sample/code-sample.js"></script>
+  <script type="module" src="node_modules/@kuscamara/code-sample/themes/one-dark.js"></script>
+  <script type="module" src="node_modules/@kuscamara/code-sample/code-sample.js"></script>
   ```
 
 ## Usage
@@ -137,8 +124,8 @@ The component includes 6 themes that must be imported explicitly.
 Example:
 
 ```html
-<script type="module" src="../code-sample/themes/one-dark.js"></script>
-<script type="module" src="../code-sample/code-sample.js"></script>
+<script type="module" src="node_modules/@kuscamara/code-sample/themes/one-dark.js"></script>
+<script type="module" src="node_modules/@kuscamara/code-sample/code-sample.js"></script>
 ```
 
 ### Available themes

@@ -1,5 +1,5 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
+import { PolymerElement, html } from '../../@polymer/polymer/polymer-element.js';
+import { FlattenedNodesObserver } from '../../@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import './highlight-import.js';
 
 /* global hljs */

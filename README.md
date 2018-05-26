@@ -166,6 +166,19 @@ Example:
 </dom-module>
 ```
 
+### Languages included in the highlightjs pack included with the component:
+
+- CSS
+- HTTP
+- JavaScript
+- Bash
+- CoffeScript
+- JSON
+- Markdown
+- HTML, XML
+
+highlightjs version: v9.12.0
+
 ### Styling
 
 The following custom CSS properties are available for styling:

@@ -25,12 +25,13 @@
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.0.0",
+    "browser-sync": "^2.24.4",
     "wct-browser-legacy": "^1.0.0",
     "wct-istanbul": "^0.14.2",
     "web-component-tester": "^6.6.0"
   },
   "scripts": {
-    "serve": "polymer serve --npm",
+    "serve": "node tasks/server",
     "test:sauce": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm",
     "test": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm --skip-plugin sauce"
   },

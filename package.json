@@ -30,6 +30,7 @@
     "web-component-tester": "^6.6.0"
   },
   "scripts": {
+    "serve": "polymer serve",
     "test:sauce": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm",
     "test": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm --skip-plugin sauce"
   }

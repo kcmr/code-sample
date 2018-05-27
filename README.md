@@ -9,19 +9,6 @@
 A themeable sample code snippet that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.   
 Forget to worry about spaces, indentation, HTML entities, etc.
 
-<!---
-```html
-<custom-element-demo>
-  <template>
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../themes/one-dark.js"></script>
-    <script type="module" src="../code-sample.js"></script>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
-
 ```html
 <code-sample>
   <template>

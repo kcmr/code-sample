@@ -9,7 +9,7 @@ import './highlight-import.js';
  *
  * @customElement
  * @polymer
- * @demo demo/index.html
+ * @demo https://kcmr.github.io/code-sample/
  */
 class CodeSample extends PolymerElement {
   static get template() {

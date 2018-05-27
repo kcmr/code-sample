@@ -32,8 +32,8 @@
   },
   "scripts": {
     "serve": "node tasks/server",
-    "test:sauce": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm",
-    "test": "./node_modules/web-component-tester/bin/wct  --module-resolution=node --npm --skip-plugin sauce"
+    "test:sauce": "./node_modules/web-component-tester/bin/wct --module-resolution=node --npm",
+    "test": "./node_modules/web-component-tester/bin/wct --module-resolution=node --npm --skip-plugin sauce"
   },
   "bugs": {
     "url": "https://github.com/kcmr/code-sample/issues"

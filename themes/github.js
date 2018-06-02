@@ -7,7 +7,6 @@ export const github = html`
   .hljs {
     display: block;
     overflow-x: auto;
-    padding: 0.5em;
     color: var(--code-sample-color, #333);
     background: var(--code-sample-background, #f8f8f8);
   }

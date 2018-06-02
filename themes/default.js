@@ -7,7 +7,6 @@ export const defaultTheme = html`
   .hljs {
     display: block;
     overflow-x: auto;
-    padding: 0.5em;
     background: var(--code-sample-background, #F0F0F0);
   }
 

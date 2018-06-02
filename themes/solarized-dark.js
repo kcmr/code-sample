@@ -7,7 +7,6 @@ export const solarizedDark = html`
   .hljs {
     display: block;
     overflow-x: auto;
-    padding: 0.5em;
     background: var(--code-sample-background, #002b36);
     color: var(--code-sample-color, #839496);
   }

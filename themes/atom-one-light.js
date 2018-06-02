@@ -25,7 +25,6 @@ export const oneLight = html`
   .hljs {
     display: block;
     overflow-x: auto;
-    padding: 0.5em;
     color: var(--code-sample-color, #383a42);
     background: var(--code-sample-background, #fafafa);
   }

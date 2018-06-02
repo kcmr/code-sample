@@ -1,95 +1,85 @@
-const $_documentContainer = document.createElement('template');
-$_documentContainer.setAttribute('style', 'display: none;');
+import { html } from '../../../@polymer/lit-element/lit-element.js';
 
-$_documentContainer.innerHTML = `<dom-module id="code-sample-theme">
-  <template>
-    <style>
-      /*
+export const solarizedLight = html`
+<style>
+  /* Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com> */
 
-      Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: var(--code-sample-background, #fdf6e3);
+    color: var(--code-sample-color, #657b83);
+  }
 
-      */
+  .hljs-comment,
+  .hljs-quote {
+    color: #93a1a1;
+  }
 
-      .hljs {
-        display: block;
-        overflow-x: auto;
-        padding: 0.5em;
-        background: var(--code-sample-background, #fdf6e3);
-        color: var(--code-sample-color, #657b83);
-      }
+  /* Solarized Green */
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-addition {
+    color: #859900;
+  }
 
-      .hljs-comment,
-      .hljs-quote {
-        color: #93a1a1;
-      }
+  /* Solarized Cyan */
+  .hljs-number,
+  .hljs-string,
+  .hljs-meta .hljs-meta-string,
+  .hljs-literal,
+  .hljs-doctag,
+  .hljs-regexp {
+    color: #2aa198;
+  }
 
-      /* Solarized Green */
-      .hljs-keyword,
-      .hljs-selector-tag,
-      .hljs-addition {
-        color: #859900;
-      }
+  /* Solarized Blue */
+  .hljs-title,
+  .hljs-section,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class {
+    color: #268bd2;
+  }
 
-      /* Solarized Cyan */
-      .hljs-number,
-      .hljs-string,
-      .hljs-meta .hljs-meta-string,
-      .hljs-literal,
-      .hljs-doctag,
-      .hljs-regexp {
-        color: #2aa198;
-      }
+  /* Solarized Yellow */
+  .hljs-attribute,
+  .hljs-attr,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-class .hljs-title,
+  .hljs-type {
+    color: #b58900;
+  }
 
-      /* Solarized Blue */
-      .hljs-title,
-      .hljs-section,
-      .hljs-name,
-      .hljs-selector-id,
-      .hljs-selector-class {
-        color: #268bd2;
-      }
+  /* Solarized Orange */
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-subst,
+  .hljs-meta,
+  .hljs-meta .hljs-keyword,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo,
+  .hljs-link {
+    color: #cb4b16;
+  }
 
-      /* Solarized Yellow */
-      .hljs-attribute,
-      .hljs-attr,
-      .hljs-variable,
-      .hljs-template-variable,
-      .hljs-class .hljs-title,
-      .hljs-type {
-        color: #b58900;
-      }
+  /* Solarized Red */
+  .hljs-built_in,
+  .hljs-deletion {
+    color: #dc322f;
+  }
 
-      /* Solarized Orange */
-      .hljs-symbol,
-      .hljs-bullet,
-      .hljs-subst,
-      .hljs-meta,
-      .hljs-meta .hljs-keyword,
-      .hljs-selector-attr,
-      .hljs-selector-pseudo,
-      .hljs-link {
-        color: #cb4b16;
-      }
+  .hljs-formula {
+    background: #eee8d5;
+  }
 
-      /* Solarized Red */
-      .hljs-built_in,
-      .hljs-deletion {
-        color: #dc322f;
-      }
+  .hljs-emphasis {
+    font-style: italic;
+  }
 
-      .hljs-formula {
-        background: #eee8d5;
-      }
-
-      .hljs-emphasis {
-        font-style: italic;
-      }
-
-      .hljs-strong {
-        font-weight: bold;
-      }
-    </style>
-  </template>
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
+  .hljs-strong {
+    font-weight: bold;
+  }
+</style>`;

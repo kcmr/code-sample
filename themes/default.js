@@ -1,110 +1,100 @@
-const $_documentContainer = document.createElement('template');
-$_documentContainer.setAttribute('style', 'display: none;');
+import { html } from '../../../@polymer/lit-element/lit-element.js';
 
-$_documentContainer.innerHTML = `<dom-module id="code-sample-theme">
-  <template>
-    <style>
-      /*
+export const defaultTheme = html`
+<style>
+  /* Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org> */
 
-      Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
-
-      */
-
-      .hljs {
-        display: block;
-        overflow-x: auto;
-        padding: 0.5em;
-        background: var(--code-sample-background, #F0F0F0);
-      }
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: var(--code-sample-background, #F0F0F0);
+  }
 
 
-      /* Base color: saturation 0; */
+  /* Base color: saturation 0; */
 
-      .hljs,
-      .hljs-subst {
-        color: var(--code-sample-color, #444);
-      }
+  .hljs,
+  .hljs-subst {
+    color: var(--code-sample-color, #444);
+  }
 
-      .hljs-comment {
-        color: #888888;
-      }
+  .hljs-comment {
+    color: #888888;
+  }
 
-      .hljs-keyword,
-      .hljs-attribute,
-      .hljs-selector-tag,
-      .hljs-meta-keyword,
-      .hljs-doctag,
-      .hljs-name {
-        font-weight: bold;
-      }
-
-
-      /* User color: hue: 0 */
-
-      .hljs-type,
-      .hljs-string,
-      .hljs-number,
-      .hljs-selector-id,
-      .hljs-selector-class,
-      .hljs-quote,
-      .hljs-template-tag,
-      .hljs-deletion {
-        color: #880000;
-      }
-
-      .hljs-title,
-      .hljs-section {
-        color: #880000;
-        font-weight: bold;
-      }
-
-      .hljs-regexp,
-      .hljs-symbol,
-      .hljs-variable,
-      .hljs-template-variable,
-      .hljs-link,
-      .hljs-selector-attr,
-      .hljs-selector-pseudo {
-        color: #BC6060;
-      }
+  .hljs-keyword,
+  .hljs-attribute,
+  .hljs-selector-tag,
+  .hljs-meta-keyword,
+  .hljs-doctag,
+  .hljs-name {
+    font-weight: bold;
+  }
 
 
-      /* Language color: hue: 90; */
+  /* User color: hue: 0 */
 
-      .hljs-literal {
-        color: #78A960;
-      }
+  .hljs-type,
+  .hljs-string,
+  .hljs-number,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-quote,
+  .hljs-template-tag,
+  .hljs-deletion {
+    color: #880000;
+  }
 
-      .hljs-built_in,
-      .hljs-bullet,
-      .hljs-code,
-      .hljs-addition {
-        color: #397300;
-      }
+  .hljs-title,
+  .hljs-section {
+    color: #880000;
+    font-weight: bold;
+  }
+
+  .hljs-regexp,
+  .hljs-symbol,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-link,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo {
+    color: #BC6060;
+  }
 
 
-      /* Meta color: hue: 200 */
+  /* Language color: hue: 90; */
 
-      .hljs-meta {
-        color: #1f7199;
-      }
+  .hljs-literal {
+    color: #78A960;
+  }
 
-      .hljs-meta-string {
-        color: #4d99bf;
-      }
+  .hljs-built_in,
+  .hljs-bullet,
+  .hljs-code,
+  .hljs-addition {
+    color: #397300;
+  }
 
 
-      /* Misc effects */
+  /* Meta color: hue: 200 */
 
-      .hljs-emphasis {
-        font-style: italic;
-      }
+  .hljs-meta {
+    color: #1f7199;
+  }
 
-      .hljs-strong {
-        font-weight: bold;
-      }
-    </style>
-  </template>
-</dom-module>`;
+  .hljs-meta-string {
+    color: #4d99bf;
+  }
 
-document.head.appendChild($_documentContainer.content);
+
+  /* Misc effects */
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+</style>`;

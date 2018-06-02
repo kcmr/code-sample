@@ -10,7 +10,6 @@ import './highlight-import.js';
  * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
  *
  * @customElement
- * @polymer
  * @demo https://kcmr.github.io/code-sample/
  */
 class CodeSample extends LitElement {
@@ -94,28 +93,28 @@ class CodeSample extends LitElement {
   }
 
   _updateContent() {
-    if (this._code) {
-      this._code.parentNode.removeChild(this._code);
-    }
-
-    if (this._demo) {
-      this.$.demo.innerHTML = '';
-    }
+    if (this._code) this._code.parentNode.removeChild(this._code);
+    if (this._demo) this.$.demo.innerHTML = '';
 
     const template = this._getCodeTemplate();
 
     if (this.render) {
-      this._demo = this.$_demo.appendChild(document.importNode(template.content, true));
+      this._demo = this.$_demo.appendChild(
+        document.importNode(template.content, true)
+      );
     }
 
     this._highlight(template.innerHTML);
   }
 
+  _getCodeTemplate() {
+    const nodes = FlattenedNodesObserver.getFlattenedNodes(this.$_content);
+    return [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
+  }
+
   _highlight(str) {
     this._code = document.createElement('code');
-    if (this.type) {
-      this._code.classList.add(this.type);
-    }
+    if (this.type) this._code.classList.add(this.type);
     this._code.innerHTML = this._entitize(this._cleanIndentation(str));
     this.$_code.appendChild(this._code);
     hljs.highlightBlock(this._code);
@@ -136,11 +135,6 @@ class CodeSample extends LitElement {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
-  }
-
-  _getCodeTemplate() {
-    const nodes = FlattenedNodesObserver.getFlattenedNodes(this.$_content);
-    return [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
   }
 
   _copyToClipboard() {

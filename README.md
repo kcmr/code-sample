@@ -152,7 +152,7 @@ Example:
 ```js
 import { html } from '../../../@polymer/lit-element/lit-element.js';
 
-export const oneDark = html`
+export const myOwnTheme = html`
 <style>
 /* your own styles */
 </style>`;

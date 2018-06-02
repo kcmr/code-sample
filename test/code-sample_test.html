@@ -152,9 +152,12 @@
           assert.isFalse(btn.hasAttribute('hidden'));
         });
 
-        test('copy button is not visible if copyClipboardButton is false', () => {
+        test('copy button is not visible if copyClipboardButton is false', (done) => {
           el.removeAttribute('copy-clipboard-button');
-          assert.isTrue(btn.hasAttribute('hidden'));
+          flush(() => {
+            assert.isTrue(btn.hasAttribute('hidden'));
+            done();
+          });
         });
 
         test('clicking on copy button copies code to clipboard', () => {

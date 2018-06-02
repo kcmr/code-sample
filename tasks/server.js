@@ -7,8 +7,8 @@ const config = require('./config');
 const manifest = require('../package.json');
 
 const startServer = (port) => {
-  const polymerCliParams = ['serve', '--npm', '-p'];
-  const polymerServe = spawn('polymer', polymerCliParams.concat(port));
+  const polymerCliParams = ['serve', '--npm', '-p', port];
+  const polymerServe = spawn('polymer', polymerCliParams);
 
   polymerServe.stdout.on('data', (data) => {
     console.log(`${data}`);

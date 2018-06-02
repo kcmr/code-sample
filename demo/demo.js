@@ -4,6 +4,8 @@ import { defaultTheme } from '../themes/default.js';
 import { github } from '../themes/github.js';
 import { solarizedLight } from '../themes/solarized-light.js';
 import { solarizedDark } from '../themes/solarized-dark.js';
+import { kustomLight } from '../themes/kustom-light.js';
+import { kustomDark } from '../themes/kustom-dark.js';
 
 const themes = {
   oneDark,
@@ -11,7 +13,9 @@ const themes = {
   defaultTheme,
   github,
   solarizedLight,
-  solarizedDark
+  solarizedDark,
+  kustomLight,
+  kustomDark,
 };
 
 const changeTheme = (e) => {

@@ -1,5 +1,7 @@
-import { PolymerElement, html } from '../../@polymer/polymer/polymer-element.js';
+import { LitElement, html } from '../../@polymer/lit-element/lit-element.js';
 import { FlattenedNodesObserver } from '../../@polymer/polymer/lib/utils/flattened-nodes-observer.js';
+import { styles } from './styles.js';
+import { oneDark } from './themes/one-dark.js';
 import './highlight-import.js';
 
 /* global hljs */
@@ -11,111 +13,73 @@ import './highlight-import.js';
  * @polymer
  * @demo https://kcmr.github.io/code-sample/
  */
-class CodeSample extends PolymerElement {
-  static get template() {
+class CodeSample extends LitElement {
+  _render({copyClipboardButton}) {
     return html`
-    <style include="code-sample-theme">
-      :host {
-        display: block;
-      }
+      ${styles}
+      ${this.theme || oneDark}
+      <div id="demo" class="demo"></div>
 
-      :host([hidden]),
-      [hidden] {
-        display: none;
-      }
+      <slot id="content"></slot>
 
-      pre {
-        margin: 0;
-      }
-
-      pre, code {
-        font-family: var(--code-sample-font-family, Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace);
-        font-size: var(--code-sample-font-size, 14px);
-      }
-
-      .hljs {
-        padding: 0 20px;
-        line-height: 1.3;
-      }
-
-      .demo:not(:empty) {
-        padding: var(--code-sample-demo-padding, 0 0 20px);
-      }
-
-      .demo {
-        @apply --code-sample-demo;
-      }
-
-      #code-container {
-        position: relative;
-        @apply --code-sample-code-container;
-      }
-
-      #code-container:hover {
-        @apply --code-sample-code-container-hover;
-      }
-
-      #code-container:hover > button {
-        @apply --code-sample-code-container-hover-button;
-      }
-
-      button {
-        background: #e0e0e0;
-        border: none;
-        cursor: pointer;
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        text-transform: uppercase;
-        @apply --code-sample-copy-clipboard-button;
-      }
-    </style>
-
-    <div id="demo" class="demo"></div>
-
-    <slot id="content"></slot>
-
-    <div id="code-container">
-      <button hidden="[[!copyClipboardButton]]" id="copy-button" title="Copy to clipboard" on-click="_copyToClipboard">Copy</button>
-      <pre id="code"></pre>
-    </div>
-  `;
+      <div id="code-container">
+        <button id="copy-button"
+          hidden?="${!copyClipboardButton}"
+          title="Copy to clipboard"
+          on-click="${() => this._copyToClipboard()}">Copy</button>
+        <pre id="code"></pre>
+      </div>
+    `;
   }
 
-  static get is() {
-    return 'code-sample';
+  _firstRendered() {
+    this.$_content = this.shadowRoot.querySelector('#content');
+    this.$_code = this.shadowRoot.querySelector('#code');
+    this.$_copyButton = this.shadowRoot.querySelector('#copy-button');
+    this.$_demo = this.shadowRoot.querySelector('#demo');
   }
 
   static get properties() {
     return {
-      copyClipboardButton: {
-        type: Boolean,
-        value: false
-      },
-      /**
-       * Set to true to render the code inside the template.
-       */
-      render: {
-        type: Boolean,
-        value: false
-      },
-
-      /**
-       * Code type (optional). (eg.: html, js, css)
-       * Options are the same as the available classes for `<code>` tag using highlight.js
-       */
-      type: {
-        type: String
-      }
+      // Set to true to show a copy to clipboard button.
+      copyClipboardButton: Boolean,
+      // Tagged template literal with custom styles.
+      theme: String,
+      // Set to true to render the code inside the template.
+      render: Boolean,
+      // Code type (optional). (eg.: html, js, css)
+      // Options are the same as the available classes for `<code>` tag using highlight.js
+      type: String,
     };
+  }
+
+  static get observedAttributes() {
+    return [
+      'copy-clipboard-button',
+      'render',
+      'type',
+      'theme',
+    ];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    const propName = this._camelCaseAttr(name);
+    this[propName] = (this.constructor.properties[propName] === Boolean)
+      ? this.hasAttribute(name)
+      : newValue;
+  }
+
+  _camelCaseAttr(value) {
+    return value.replace(/-./g,
+      (match) => match.charAt(1).toUpperCase()
+    );
   }
 
   connectedCallback() {
     super.connectedCallback();
     setTimeout(() => {
       if (this.querySelector('template')) {
-        this._observer = new FlattenedNodesObserver(this.$.content, () => this._updateContent());
+        this._observer = new FlattenedNodesObserver(this.$_content, () => this._updateContent());
       } else if (this.childNodes.length) {
         console.error('<code-sample>:', 'content must be provided inside a <template> tag');
       }
@@ -141,7 +105,7 @@ class CodeSample extends PolymerElement {
     const template = this._getCodeTemplate();
 
     if (this.render) {
-      this._demo = this.$.demo.appendChild(document.importNode(template.content, true));
+      this._demo = this.$_demo.appendChild(document.importNode(template.content, true));
     }
 
     this._highlight(template.innerHTML);
@@ -153,7 +117,7 @@ class CodeSample extends PolymerElement {
       this._code.classList.add(this.type);
     }
     this._code.innerHTML = this._entitize(this._cleanIndentation(str));
-    this.$.code.appendChild(this._code);
+    this.$_code.appendChild(this._code);
     hljs.highlightBlock(this._code);
   }
 
@@ -175,7 +139,7 @@ class CodeSample extends PolymerElement {
   }
 
   _getCodeTemplate() {
-    const nodes = FlattenedNodesObserver.getFlattenedNodes(this.$.content);
+    const nodes = FlattenedNodesObserver.getFlattenedNodes(this.$_content);
     return [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
   }
 
@@ -207,8 +171,8 @@ class CodeSample extends PolymerElement {
   }
 
   _resetCopyButtonState() {
-    this.shadowRoot.querySelector('#copy-button').textContent = 'Copy';
+    this.$_copyButton.textContent = 'Copy';
   }
 }
 
-customElements.define(CodeSample.is, CodeSample);
+customElements.define('code-sample', CodeSample);

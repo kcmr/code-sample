@@ -1,110 +1,99 @@
-const $_documentContainer = document.createElement('template');
-$_documentContainer.setAttribute('style', 'display: none;');
+import { html } from '../../../@polymer/lit-element/lit-element.js';
 
-$_documentContainer.innerHTML = `<dom-module id="code-sample-theme">
-  <template>
-    <style>
-      /*
+export const github = html`
+<style>
+  /* github.com style (c) Vasily Polovnyov <vast@whiteants.net> */
 
-      github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    color: var(--code-sample-color, #333);
+    background: var(--code-sample-background, #f8f8f8);
+  }
 
-      */
+  .hljs-comment,
+  .hljs-quote {
+    color: #998;
+    font-style: italic;
+  }
 
-      .hljs {
-        display: block;
-        overflow-x: auto;
-        padding: 0.5em;
-        color: var(--code-sample-color, #333);
-        background: var(--code-sample-background, #f8f8f8);
-      }
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: #333;
+    font-weight: bold;
+  }
 
-      .hljs-comment,
-      .hljs-quote {
-        color: #998;
-        font-style: italic;
-      }
+  .hljs-number,
+  .hljs-literal,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+    color: #008080;
+  }
 
-      .hljs-keyword,
-      .hljs-selector-tag,
-      .hljs-subst {
-        color: #333;
-        font-weight: bold;
-      }
+  .hljs-string,
+  .hljs-doctag {
+    color: #d14;
+  }
 
-      .hljs-number,
-      .hljs-literal,
-      .hljs-variable,
-      .hljs-template-variable,
-      .hljs-tag .hljs-attr {
-        color: #008080;
-      }
+  .hljs-title,
+  .hljs-section,
+  .hljs-selector-id {
+    color: #900;
+    font-weight: bold;
+  }
 
-      .hljs-string,
-      .hljs-doctag {
-        color: #d14;
-      }
+  .hljs-subst {
+    font-weight: normal;
+  }
 
-      .hljs-title,
-      .hljs-section,
-      .hljs-selector-id {
-        color: #900;
-        font-weight: bold;
-      }
+  .hljs-type,
+  .hljs-class .hljs-title {
+    color: #458;
+    font-weight: bold;
+  }
 
-      .hljs-subst {
-        font-weight: normal;
-      }
+  .hljs-tag,
+  .hljs-name,
+  .hljs-attribute {
+    color: #000080;
+    font-weight: normal;
+  }
 
-      .hljs-type,
-      .hljs-class .hljs-title {
-        color: #458;
-        font-weight: bold;
-      }
+  .hljs-regexp,
+  .hljs-link {
+    color: #009926;
+  }
 
-      .hljs-tag,
-      .hljs-name,
-      .hljs-attribute {
-        color: #000080;
-        font-weight: normal;
-      }
+  .hljs-symbol,
+  .hljs-bullet {
+    color: #990073;
+  }
 
-      .hljs-regexp,
-      .hljs-link {
-        color: #009926;
-      }
+  .hljs-built_in,
+  .hljs-builtin-name {
+    color: #0086b3;
+  }
 
-      .hljs-symbol,
-      .hljs-bullet {
-        color: #990073;
-      }
+  .hljs-meta {
+    color: #999;
+    font-weight: bold;
+  }
 
-      .hljs-built_in,
-      .hljs-builtin-name {
-        color: #0086b3;
-      }
+  .hljs-deletion {
+    background: #fdd;
+  }
 
-      .hljs-meta {
-        color: #999;
-        font-weight: bold;
-      }
+  .hljs-addition {
+    background: #dfd;
+  }
 
-      .hljs-deletion {
-        background: #fdd;
-      }
+  .hljs-emphasis {
+    font-style: italic;
+  }
 
-      .hljs-addition {
-        background: #dfd;
-      }
-
-      .hljs-emphasis {
-        font-style: italic;
-      }
-
-      .hljs-strong {
-        font-weight: bold;
-      }
-    </style>
-  </template>
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
+  .hljs-strong {
+    font-weight: bold;
+  }
+</style>`;

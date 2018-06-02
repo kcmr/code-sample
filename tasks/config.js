@@ -5,15 +5,7 @@ module.exports = {
     notify: false,
     ghostMode: false,
     reloadOnRestart: true,
-    server: {
-      baseDir: ['./'],
-      index: 'index.html',
-      routes: {
-        '/components/{{component}}': '.',
-        '/components': 'node_modules'
-      }
-    },
-    startPath: 'components/{{component}}/demo/index.html'
+    proxy: 'localhost:{{port}}/components/{{component}}/',
   },
   watch: {
     sources: '**/*.{html,js,css}'

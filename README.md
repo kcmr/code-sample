@@ -29,9 +29,8 @@ Forget to worry about spaces, indentation, HTML entities, etc.
   ```html
   <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
   ```
-3. Import the theme to be used and the component:
+3. Import the component:
   ```html
-  <script type="module" src="node_modules/@kuscamara/code-sample/themes/one-dark.js"></script>
   <script type="module" src="node_modules/@kuscamara/code-sample/code-sample.js"></script>
   ```
 
@@ -120,38 +119,43 @@ The `type` attribute specifies the language of the sample code (eg.: html, css, 
 
 ## Themes
 
-The component includes 6 themes that must be imported explicitly.
+The component includes 8 themes. One Dark is imported as the default theme.
+To use another theme, import it and set as the `theme` property.
 
 Example:
 
 ```html
-<script type="module" src="node_modules/@kuscamara/code-sample/themes/one-dark.js"></script>
-<script type="module" src="node_modules/@kuscamara/code-sample/code-sample.js"></script>
+<script type="module">
+  import { oneLight } from '../node_modules/@kuscamara/code-sample/theme/atom-one-light.js';
+  document.querySelector('code-sample').theme = oneLight;
+</script>
 ```
 
 ### Available themes
 
-- atom-one-ligth.js
-- default.js
-- github.js
-- one-dark.js
-- solarized-dark.js
-- solarized-light.js
+- atom-one-ligth.js as `oneLight`
+- default.js as `defaultTheme`
+- github.js as `github`
+- one-dark.js as `oneDark`
+- solarized-dark.js as `solarizedDark`
+- solarized-light.js as `solarizedLight`
+- kustom-light.js as `kustomLight`
+- kustom-dark.js as `kustomDark`
 
 ### More themes
 
-You can use another theme by adding one of the [available themes](https://github.com/isagalaev/highlight.js/tree/master/src/styles) for hightlight.js in a shared style ([Polymer Style Module](https://www.polymer-project.org/1.0/docs/devguide/styling#style-modules)) with the id `code-sample-theme`. Check out the available themes inside themes folder to see the format.
+You can use your own theme by adding one of the [available themes](https://github.com/isagalaev/highlight.js/tree/master/src/styles) for hightlight.js in a shared style.
+The shared style should be exported as a tagged template literal.
 
 Example:
 
-```html
-<dom-module id="code-sample-theme">
-  <template>
-    <style>
-    /* your own styles */
-    </style>
-  </template>
-</dom-module>
+```js
+import { html } from '../../../@polymer/lit-element/lit-element.js';
+
+export const myOwnTheme = html`
+<style>
+/* your own styles */
+</style>`;
 ```
 
 ### Languages included in the highlightjs pack included with the component:

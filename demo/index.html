@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>code-sample demo</title>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../themes/one-dark.js"></script>
+    <script type="module" src="demo.js"></script>
     <script type="module" src="../code-sample.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400">
     <link rel="stylesheet" href="css/demo.css">
@@ -20,10 +20,23 @@
       <div class="demo">
         <div class="demo-text">
           <h1>HTML and inline JavaScript</h1>
+          <label class="select">
+            <span>Theme</span>
+            <select name="theme" data-target="#demo-1">
+              <option value="oneDark" selected>One Dark</option>
+              <option value="oneLight">One Light</option>
+              <option value="defaultTheme">Default</option>
+              <option value="github">Github</option>
+              <option value="solarizedLight">Solarized Light</option>
+              <option value="solarizedDark">Solarized Dark</option>
+              <option value="kustomLight">Kustom Light</option>
+              <option value="kustomDark">Kustom Dark</option>
+            </select>
+          </label>
         </div>
 
         <div class="demo-sample">
-          <code-sample>
+          <code-sample id="demo-1">
             <template>
               <custom-element boolean-attribute>content</custom-element>
 
@@ -42,10 +55,23 @@
       <div class="demo">
         <div class="demo-text">
           <h1>JavaScript</h1>
+          <label class="select">
+            <span>Theme</span>
+            <select name="theme" data-target="#demo-2">
+              <option value="oneDark" selected>One Dark</option>
+              <option value="oneLight">One Light</option>
+              <option value="defaultTheme">Default</option>
+              <option value="github">Github</option>
+              <option value="solarizedLight">Solarized Light</option>
+              <option value="solarizedDark">Solarized Dark</option>
+              <option value="kustomLight">Kustom Light</option>
+              <option value="kustomDark">Kustom Dark</option>
+            </select>
+          </label>
         </div>
 
         <div class="demo-sample">
-          <code-sample>
+          <code-sample id="demo-2">
             <template>
               const something = param => {
                 // comment
@@ -59,12 +85,25 @@
       <div class="demo">
         <div class="demo-text">
           <h1>Tagged template literals</h1>
+          <label class="select">
+            <span>Theme</span>
+            <select name="theme" data-target="#demo-3">
+              <option value="oneDark" selected>One Dark</option>
+              <option value="oneLight">One Light</option>
+              <option value="defaultTheme">Default</option>
+              <option value="github">Github</option>
+              <option value="solarizedLight">Solarized Light</option>
+              <option value="solarizedDark">Solarized Dark</option>
+              <option value="kustomLight">Kustom Light</option>
+              <option value="kustomDark">Kustom Dark</option>
+            </select>
+          </label>
         </div>
 
         <div class="demo-sample">
           <p>Set the <code>type</code> attribute to <b>js</b>, <b>jsx</b> or <b>javascript</b> when using tagged template literals.</p>
 
-          <code-sample type="js">
+          <code-sample type="js" id="demo-3">
             <template>
               class MyElement extends PolymerElement {
                 static get template() {
@@ -86,10 +125,23 @@
       <div class="demo">
         <div class="demo-text">
           <h1>CSS</h1>
+          <label class="select">
+            <span>Theme</span>
+            <select name="theme" data-target="#demo-4">
+              <option value="oneDark" selected>One Dark</option>
+              <option value="oneLight">One Light</option>
+              <option value="defaultTheme">Default</option>
+              <option value="github">Github</option>
+              <option value="solarizedLight">Solarized Light</option>
+              <option value="solarizedDark">Solarized Dark</option>
+              <option value="kustomLight">Kustom Light</option>
+              <option value="kustomDark">Kustom Dark</option>
+            </select>
+          </label>
         </div>
 
         <div class="demo-sample">
-          <code-sample>
+          <code-sample id="demo-4">
             <template>
               .my-style { display: block; }
 
@@ -107,11 +159,24 @@
       <div class="demo">
         <div class="demo-text">
           <h1>Rendered code</h1>
+          <label class="select">
+            <span>Theme</span>
+            <select name="theme" data-target="#demo-5">
+              <option value="oneDark" selected>One Dark</option>
+              <option value="oneLight">One Light</option>
+              <option value="defaultTheme">Default</option>
+              <option value="github">Github</option>
+              <option value="solarizedLight">Solarized Light</option>
+              <option value="solarizedDark">Solarized Dark</option>
+              <option value="kustomLight">Kustom Light</option>
+              <option value="kustomDark">Kustom Dark</option>
+            </select>
+          </label>
         </div>
 
         <div class="demo-sample">
           <p>Use the boolean attribute <code>render</code> to render the code inside the <code>&lt;template&gt;</code> tag.</p>
-          <code-sample render>
+          <code-sample render id="demo-5">
             <template>
               <style>
                 .btn {
@@ -142,11 +207,24 @@
       <div class="demo">
         <div class="demo-text">
           <h1>Copy to clipboard button</h1>
+          <label class="select">
+            <span>Theme</span>
+            <select name="theme" data-target="#demo-6">
+              <option value="oneDark" selected>One Dark</option>
+              <option value="oneLight">One Light</option>
+              <option value="defaultTheme">Default</option>
+              <option value="github">Github</option>
+              <option value="solarizedLight">Solarized Light</option>
+              <option value="solarizedDark">Solarized Dark</option>
+              <option value="kustomLight">Kustom Light</option>
+              <option value="kustomDark">Kustom Dark</option>
+            </select>
+          </label>
         </div>
 
         <div class="demo-sample">
           <p>Use the boolean attribute <code>copy-clipboard-button</code> to display a &quot;copy&quot; button on the top right corner.</p>
-          <code-sample copy-clipboard-button>
+          <code-sample copy-clipboard-button id="demo-6">
             <template>
               <div class="some-class">
                 <p>Lorem ipsum dolor…</p>
@@ -158,12 +236,25 @@
 
       <div class="demo">
         <div class="demo-text">
-          <div class="title-button">
-            <h1>Change content dynamically</h1>
-            <button class="demo-btn" id="changeContent">Change content</button>
-          </div>
+          <h1>Change content dynamically</h1>
+          <label class="select">
+            <span>Theme</span>
+            <select name="theme" data-target="#sample">
+              <option value="oneDark" selected>One Dark</option>
+              <option value="oneLight">One Light</option>
+              <option value="defaultTheme">Default</option>
+              <option value="github">Github</option>
+              <option value="solarizedLight">Solarized Light</option>
+              <option value="solarizedDark">Solarized Dark</option>
+              <option value="kustomLight">Kustom Light</option>
+              <option value="kustomDark">Kustom Dark</option>
+            </select>
+          </label>
         </div>
         <div class="demo-sample">
+          <p>
+            <button class="demo-btn" id="changeContent">Change content</button>
+          </p>
           <code-sample id="sample">
             <template>
               <p>Initial content.</p>
@@ -175,10 +266,23 @@
       <div class="demo">
         <div class="demo-text">
           <h1>Custom background colors</h1>
+          <label class="select">
+            <span>Theme</span>
+            <select name="theme" data-target="#demo-8">
+              <option value="oneDark" selected>One Dark</option>
+              <option value="oneLight">One Light</option>
+              <option value="defaultTheme">Default</option>
+              <option value="github">Github</option>
+              <option value="solarizedLight">Solarized Light</option>
+              <option value="solarizedDark">Solarized Dark</option>
+              <option value="kustomLight">Kustom Light</option>
+              <option value="kustomDark">Kustom Dark</option>
+            </select>
+          </label>
         </div>
 
         <div class="demo-sample">
-          <code-sample class="navy-bg">
+          <code-sample class="navy-bg" id="demo-8">
             <template>
               <resizable-panels>
                 <div class="panel-1">lorem...</div>

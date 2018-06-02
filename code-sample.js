@@ -62,13 +62,13 @@ class CodeSample extends LitElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    const propName = this._camelCaseAttr(name);
+    const propName = this._toCamelCase(name);
     this[propName] = (this.constructor.properties[propName] === Boolean)
       ? this.hasAttribute(name)
       : newValue;
   }
 
-  _camelCaseAttr(value) {
+  _toCamelCase(value) {
     return value.replace(/-./g,
       (match) => match.charAt(1).toUpperCase()
     );

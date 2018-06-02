@@ -145,15 +145,12 @@ class CodeSample extends LitElement {
 
     let result = false;
 
-    const copyButton = this.shadowRoot.querySelector('#copy-button');
-
     try {
       result = document.execCommand('copy', false);
-      copyButton.textContent = 'Done';
+      this.$_copyButton.textContent = 'Done';
     } catch (err) {
-      // Copy command is not available
       console.error(err);
-      copyButton.textContent = 'Error';
+      this.$_copyButton.textContent = 'Error';
     }
 
     tempNode.remove();

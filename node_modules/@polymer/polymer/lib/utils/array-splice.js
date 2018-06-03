@@ -20,9 +20,7 @@ function newSplice(index, removed, addedCount) {
 const EDIT_LEAVE = 0;
 const EDIT_UPDATE = 1;
 const EDIT_ADD = 2;
-const EDIT_DELETE = 3;
-
-// Note: This function is *based* on the computation of the Levenshtein
+const EDIT_DELETE = 3; // Note: This function is *based* on the computation of the Levenshtein
 // "edit" distance. The one change is that "updates" are treated as two
 // edits - not one. With Array splices, an update is really a delete
 // followed by an add. By retaining this, we optimize for "keeping" the
@@ -33,28 +31,24 @@ const EDIT_DELETE = 3;
 // With 1-edit updates, the shortest path would be just to update all seven
 // characters. With 2-edit updates, we delete 4, leave 3, and add 4. This
 // leaves the substring '123' intact.
-function calcEditDistances(current, currentStart, currentEnd,
-                            old, oldStart, oldEnd) {
+
+function calcEditDistances(current, currentStart, currentEnd, old, oldStart, oldEnd) {
   // "Deletion" columns
   let rowCount = oldEnd - oldStart + 1;
   let columnCount = currentEnd - currentStart + 1;
-  let distances = new Array(rowCount);
+  let distances = new Array(rowCount); // "Addition" rows. Initialize null column.
 
-  // "Addition" rows. Initialize null column.
   for (let i = 0; i < rowCount; i++) {
     distances[i] = new Array(columnCount);
     distances[i][0] = i;
-  }
+  } // Initialize null row
 
-  // Initialize null row
-  for (let j = 0; j < columnCount; j++)
-    distances[0][j] = j;
+
+  for (let j = 0; j < columnCount; j++) distances[0][j] = j;
 
   for (let i = 1; i < rowCount; i++) {
     for (let j = 1; j < columnCount; j++) {
-      if (equals(current[currentStart + j - 1], old[oldStart + i - 1]))
-        distances[i][j] = distances[i - 1][j - 1];
-      else {
+      if (equals(current[currentStart + j - 1], old[oldStart + i - 1])) distances[i][j] = distances[i - 1][j - 1];else {
         let north = distances[i - 1][j] + 1;
         let west = distances[i][j - 1] + 1;
         distances[i][j] = north < west ? north : west;
@@ -63,36 +57,35 @@ function calcEditDistances(current, currentStart, currentEnd,
   }
 
   return distances;
-}
-
-// This starts at the final weight, and walks "backward" by finding
+} // This starts at the final weight, and walks "backward" by finding
 // the minimum previous weight recursively until the origin of the weight
 // matrix.
+
+
 function spliceOperationsFromEditDistances(distances) {
   let i = distances.length - 1;
   let j = distances[0].length - 1;
   let current = distances[i][j];
   let edits = [];
+
   while (i > 0 || j > 0) {
     if (i == 0) {
       edits.push(EDIT_ADD);
       j--;
       continue;
     }
+
     if (j == 0) {
       edits.push(EDIT_DELETE);
       i--;
       continue;
     }
+
     let northWest = distances[i - 1][j - 1];
     let west = distances[i - 1][j];
     let north = distances[i][j - 1];
-
     let min;
-    if (west < north)
-      min = west < northWest ? west : northWest;
-    else
-      min = north < northWest ? north : northWest;
+    if (west < north) min = west < northWest ? west : northWest;else min = north < northWest ? north : northWest;
 
     if (min == northWest) {
       if (northWest == current) {
@@ -101,6 +94,7 @@ function spliceOperationsFromEditDistances(distances) {
         edits.push(EDIT_UPDATE);
         current = northWest;
       }
+
       i--;
       j--;
     } else if (min == west) {
@@ -117,7 +111,6 @@ function spliceOperationsFromEditDistances(distances) {
   edits.reverse();
   return edits;
 }
-
 /**
  * Splice Projection functions:
  *
@@ -159,46 +152,37 @@ function spliceOperationsFromEditDistances(distances) {
  * the array of removed items from this location; `addedCount` the number
  * of items added at this location.
  */
-function calcSplices(current, currentStart, currentEnd,
-                      old, oldStart, oldEnd) {
+
+
+function calcSplices(current, currentStart, currentEnd, old, oldStart, oldEnd) {
   let prefixCount = 0;
   let suffixCount = 0;
   let splice;
-
   let minLength = Math.min(currentEnd - currentStart, oldEnd - oldStart);
-  if (currentStart == 0 && oldStart == 0)
-    prefixCount = sharedPrefix(current, old, minLength);
-
-  if (currentEnd == current.length && oldEnd == old.length)
-    suffixCount = sharedSuffix(current, old, minLength - prefixCount);
-
+  if (currentStart == 0 && oldStart == 0) prefixCount = sharedPrefix(current, old, minLength);
+  if (currentEnd == current.length && oldEnd == old.length) suffixCount = sharedSuffix(current, old, minLength - prefixCount);
   currentStart += prefixCount;
   oldStart += prefixCount;
   currentEnd -= suffixCount;
   oldEnd -= suffixCount;
-
-  if (currentEnd - currentStart == 0 && oldEnd - oldStart == 0)
-    return [];
+  if (currentEnd - currentStart == 0 && oldEnd - oldStart == 0) return [];
 
   if (currentStart == currentEnd) {
     splice = newSplice(currentStart, [], 0);
-    while (oldStart < oldEnd)
-      splice.removed.push(old[oldStart++]);
 
-    return [ splice ];
-  } else if (oldStart == oldEnd)
-    return [ newSplice(currentStart, [], currentEnd - currentStart) ];
+    while (oldStart < oldEnd) splice.removed.push(old[oldStart++]);
 
-  let ops = spliceOperationsFromEditDistances(
-      calcEditDistances(current, currentStart, currentEnd,
-                             old, oldStart, oldEnd));
+    return [splice];
+  } else if (oldStart == oldEnd) return [newSplice(currentStart, [], currentEnd - currentStart)];
 
+  let ops = spliceOperationsFromEditDistances(calcEditDistances(current, currentStart, currentEnd, old, oldStart, oldEnd));
   splice = undefined;
   let splices = [];
   let index = currentStart;
   let oldIndex = oldStart;
+
   for (let i = 0; i < ops.length; i++) {
-    switch(ops[i]) {
+    switch (ops[i]) {
       case EDIT_LEAVE:
         if (splice) {
           splices.push(splice);
@@ -208,27 +192,23 @@ function calcSplices(current, currentStart, currentEnd,
         index++;
         oldIndex++;
         break;
-      case EDIT_UPDATE:
-        if (!splice)
-          splice = newSplice(index, [], 0);
 
+      case EDIT_UPDATE:
+        if (!splice) splice = newSplice(index, [], 0);
         splice.addedCount++;
         index++;
-
         splice.removed.push(old[oldIndex]);
         oldIndex++;
         break;
-      case EDIT_ADD:
-        if (!splice)
-          splice = newSplice(index, [], 0);
 
+      case EDIT_ADD:
+        if (!splice) splice = newSplice(index, [], 0);
         splice.addedCount++;
         index++;
         break;
-      case EDIT_DELETE:
-        if (!splice)
-          splice = newSplice(index, [], 0);
 
+      case EDIT_DELETE:
+        if (!splice) splice = newSplice(index, [], 0);
         splice.removed.push(old[oldIndex]);
         oldIndex++;
         break;
@@ -238,13 +218,13 @@ function calcSplices(current, currentStart, currentEnd,
   if (splice) {
     splices.push(splice);
   }
+
   return splices;
 }
 
 function sharedPrefix(current, old, searchLength) {
-  for (let i = 0; i < searchLength; i++)
-    if (!equals(current[i], old[i]))
-      return i;
+  for (let i = 0; i < searchLength; i++) if (!equals(current[i], old[i])) return i;
+
   return searchLength;
 }
 
@@ -252,12 +232,11 @@ function sharedSuffix(current, old, searchLength) {
   let index1 = current.length;
   let index2 = old.length;
   let count = 0;
-  while (count < searchLength && equals(current[--index1], old[--index2]))
-    count++;
+
+  while (count < searchLength && equals(current[--index1], old[--index2])) count++;
 
   return count;
 }
-
 /**
  * Returns an array of splice records indicating the minimum edits required
  * to transform the `previous` array into the `current` array.
@@ -289,9 +268,10 @@ function sharedSuffix(current, old, searchLength) {
  * the array of removed items from this location; `addedCount` the number
  * of items added at this location.
  */
+
+
 export function calculateSplices(current, previous) {
-  return calcSplices(current, 0, current.length, previous, 0,
-                          previous.length);
+  return calcSplices(current, 0, current.length, previous, 0, previous.length);
 }
 
 function equals(currentValue, previousValue) {

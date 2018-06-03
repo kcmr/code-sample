@@ -19,39 +19,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  * @summary Module that provides a number of strategies for enqueuing
  * asynchronous tasks.
  */
+import './boot.js'; // Microtask implemented using Mutation Observer
 
-import './boot.js';
-
-// Microtask implemented using Mutation Observer
 let microtaskCurrHandle = 0;
 let microtaskLastHandle = 0;
 let microtaskCallbacks = [];
 let microtaskNodeContent = 0;
 let microtaskNode = document.createTextNode('');
-new window.MutationObserver(microtaskFlush).observe(microtaskNode, {characterData: true});
+new window.MutationObserver(microtaskFlush).observe(microtaskNode, {
+  characterData: true
+});
 
 function microtaskFlush() {
   const len = microtaskCallbacks.length;
+
   for (let i = 0; i < len; i++) {
     let cb = microtaskCallbacks[i];
+
     if (cb) {
       try {
         cb();
       } catch (e) {
-        setTimeout(() => { throw e; });
+        setTimeout(() => {
+          throw e;
+        });
       }
     }
   }
+
   microtaskCallbacks.splice(0, len);
   microtaskLastHandle += len;
 }
-
 /**
  * Async interface wrapper around `setTimeout`.
  *
  * @namespace
  * @summary Async interface wrapper around `setTimeout`.
  */
+
+
 const timeOut = {
   /**
    * Returns a sub-module with the async interface providing the provided
@@ -63,12 +69,17 @@ const timeOut = {
    */
   after(delay) {
     return {
-      run(fn) { return window.setTimeout(fn, delay); },
+      run(fn) {
+        return window.setTimeout(fn, delay);
+      },
+
       cancel(handle) {
         window.clearTimeout(handle);
       }
+
     };
   },
+
   /**
    * Enqueues a function called in the next task.
    *
@@ -80,6 +91,7 @@ const timeOut = {
   run(fn, delay) {
     return window.setTimeout(fn, delay);
   },
+
   /**
    * Cancels a previously enqueued `timeOut` callback.
    *
@@ -90,15 +102,16 @@ const timeOut = {
   cancel(handle) {
     window.clearTimeout(handle);
   }
-};
-export {timeOut};
 
+};
+export { timeOut };
 /**
  * Async interface wrapper around `requestAnimationFrame`.
  *
  * @namespace
  * @summary Async interface wrapper around `requestAnimationFrame`.
  */
+
 const animationFrame = {
   /**
    * Enqueues a function called at `requestAnimationFrame` timing.
@@ -110,6 +123,7 @@ const animationFrame = {
   run(fn) {
     return window.requestAnimationFrame(fn);
   },
+
   /**
    * Cancels a previously enqueued `animationFrame` callback.
    *
@@ -120,9 +134,9 @@ const animationFrame = {
   cancel(handle) {
     window.cancelAnimationFrame(handle);
   }
-};
-export {animationFrame};
 
+};
+export { animationFrame };
 /**
  * Async interface wrapper around `requestIdleCallback`.  Falls back to
  * `setTimeout` on browsers that do not support `requestIdleCallback`.
@@ -130,6 +144,7 @@ export {animationFrame};
  * @namespace
  * @summary Async interface wrapper around `requestIdleCallback`.
  */
+
 const idlePeriod = {
   /**
    * Enqueues a function called at `requestIdleCallback` timing.
@@ -139,10 +154,9 @@ const idlePeriod = {
    * @return {number} Handle used for canceling task
    */
   run(fn) {
-    return window.requestIdleCallback ?
-      window.requestIdleCallback(fn) :
-      window.setTimeout(fn, 16);
+    return window.requestIdleCallback ? window.requestIdleCallback(fn) : window.setTimeout(fn, 16);
   },
+
   /**
    * Cancels a previously enqueued `idlePeriod` callback.
    *
@@ -151,13 +165,11 @@ const idlePeriod = {
    * @return {void}
    */
   cancel(handle) {
-    window.cancelIdleCallback ?
-      window.cancelIdleCallback(handle) :
-      window.clearTimeout(handle);
+    window.cancelIdleCallback ? window.cancelIdleCallback(handle) : window.clearTimeout(handle);
   }
-};
-export {idlePeriod};
 
+};
+export { idlePeriod };
 /**
  * Async interface for enqueuing callbacks that run at microtask timing.
  *
@@ -171,8 +183,8 @@ export {idlePeriod};
  * @summary Async interface for enqueuing callbacks that run at microtask
  *   timing.
  */
-const microTask = {
 
+const microTask = {
   /**
    * Enqueues a function called at microtask timing.
    *
@@ -195,13 +207,15 @@ const microTask = {
    */
   cancel(handle) {
     const idx = handle - microtaskLastHandle;
+
     if (idx >= 0) {
       if (!microtaskCallbacks[idx]) {
         throw new Error('invalid async handle: ' + handle);
       }
+
       microtaskCallbacks[idx] = null;
     }
   }
 
 };
-export {microTask};
+export { microTask };

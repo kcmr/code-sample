@@ -58,6 +58,30 @@ When **used inside a custom element** you'll need to add the attribute `preserve
 </code-sample>
 ```
 
+### Used inside a tagged template literal
+
+When **used inside a tagged template literal** (Polymer or LitElement html function), you should escape any template string (`${expression}`) to prevent it from being evaluated getting an error.
+
+```js
+class SomeElement extends PolymerElement {
+  static get template() {
+    return html`
+      <code-sample type="js">
+        <template preserve-content>
+          export class Example extends ExampleBase {
+            static get template() {
+              return html\`
+                <p>\${super.template}</p>
+              \`;
+            }
+          }
+        </template>
+      </code-sample>
+    `;
+  }
+}
+```
+
 ### Render the code inside the template
 
 To render the code inside the template, use the boolean attribute `render`.

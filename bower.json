@@ -16,7 +16,8 @@
     "theme"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0"
+    "polymer": "Polymer/polymer#^2.0.0",
+    "highlightjs": "^9.12.0"
   },
   "devDependencies": {
     "web-component-tester": "^6.0.0",

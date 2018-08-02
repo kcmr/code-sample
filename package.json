@@ -12,16 +12,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/kcmr/code-sample.git"
+    "url": "git://github.com/yang-zzhong/code-sample.git"
   },
-  "homepage": "https://github.com/kcmr/code-sample/",
-  "name": "@kuscamara/code-sample",
-  "version": "2.0.1",
+  "homepage": "https://github.com/yang-zzhong/code-sample/",
+  "name": "code-sample",
+  "version": "2.0.2",
   "main": "code-sample.js",
-  "author": "Kus Cámara <kus.camara@gmail.com>",
+  "author": "yang zhong <hackyoung110@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@polymer/lit-element": "^0.5.1",
     "@polymer/polymer": "^3.0.0",
     "highlightjs": "^9.10.0"
   },
@@ -39,7 +38,7 @@
     "test": "./node_modules/web-component-tester/bin/wct --module-resolution=node --npm --skip-plugin sauce"
   },
   "bugs": {
-    "url": "https://github.com/kcmr/code-sample/issues"
+    "url": "https://github.com/yang-zzhong/code-sample/issues"
   },
   "directories": {
     "test": "test"

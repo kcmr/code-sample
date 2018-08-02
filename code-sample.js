@@ -1,6 +1,4 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import { Templatizer } from '@polymer/polymer/lib/legacy/templatizer-behavior.js';
 import 'highlightjs/highlight.pack.min.js';
 
 /* global hljs */
@@ -15,7 +13,7 @@ class CodeSample extends PolymerElement {
 
   static get template() {
     return html`
-      <style inlcude="[[theme]]">
+      <style>
         :host {
           display: block;
         }
@@ -89,7 +87,10 @@ class CodeSample extends PolymerElement {
         reflectToAttribute: true
       },
       // Tagged template literal with custom styles.
-      theme: String,
+      theme: {
+        type: String,
+        observer: '_themeChanged',
+      },
       // Set to true to render the code inside the template.
       render: Boolean,
       // Code type (optional). (eg.: html, js, css)
@@ -152,8 +153,13 @@ class CodeSample extends PolymerElement {
         "solarized-light": "solarizedLight",
         "solarized-dark": "solarizedDark",
       };
-      this.$.theme.innerHTML = res[map[themeName]].innerHTML;
+      this.theme = res[map[themeName]];
+
     }.bind(this));
+  }
+
+  _themeChanged(theme) {
+    this.$.theme.innerHTML = theme.innerHTML;
   }
 
   connectedCallback() {

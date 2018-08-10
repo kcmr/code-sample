@@ -16,6 +16,5 @@ addons:
 script:
   - xvfb-run test --skip-plugin sauce
   - codecov
-  - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then xvfb-run test --skip-plugin local --skip-plugin istanbul; fi'
 dist: trusty
 

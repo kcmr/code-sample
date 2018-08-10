@@ -1,5 +1,6 @@
 # &lt;code-sample&gt;
 [![Build Status](https://img.shields.io/travis/kcmr/code-sample/master.svg?style=flat-square)](https://travis-ci.org/kcmr/code-sample) 
+[![codecov](https://codecov.io/gh/kcmr/code-sample/branch/master/graph/badge.svg)](https://codecov.io/gh/kcmr/code-sample)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://www.webcomponents.org/element/@kuscamara/code-sample)
 [![npm version](https://badge.fury.io/js/%40kuscamara%2Fcode-sample.svg)](https://badge.fury.io/js/%40kuscamara%2Fcode-sample)
 ![Polymer 3](https://img.shields.io/badge/Polymer-3-green.svg)

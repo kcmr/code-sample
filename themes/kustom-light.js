@@ -1,6 +1,9 @@
-import {html} from '@polymer/polymer/polymer-element.js';
-
-export const kustomLight = html`
+const html = (string) => string; // only for highlighting purpuses (editor)
+const $documentContainer = document.createElement('div');
+$documentContainer.setAttribute('style', 'display: none;');
+$documentContainer.innerHTML = html`
+<dom-module id="code-sample-theme">
+<template>
 <style>
   .hljs {
     line-height: 1.35;
@@ -83,4 +86,8 @@ export const kustomLight = html`
   .hljs-params {
     color: #e6c07b;
   }
-</style>`;
+</style>
+</template>
+</dom-module>`;
+
+document.head.appendChild($documentContainer);

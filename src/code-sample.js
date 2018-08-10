@@ -1,6 +1,5 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import {FlattenedNodesObserver} from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import {oneDark} from './themes/one-dark.js';
 import '../../highlightjs/highlight.pack.min.js';
 
 /**
@@ -13,8 +12,7 @@ import '../../highlightjs/highlight.pack.min.js';
 class CodeSample extends PolymerElement {
   static get template() {
     return html`
-    ${this.constructor.theme || oneDark}
-    <link rel="stylesheet" href="code-sample.css" inline id="baseStyle">
+    <link rel="stylesheet" href="code-sample.css" include="code-sample-theme" inline>
 
     <div id="demo" class="demo"></div>
     <slot id="content"></slot>
@@ -33,11 +31,6 @@ class CodeSample extends PolymerElement {
         type: Boolean,
         value: false,
       },
-      // Tagged template literal with custom styles.
-      theme: {
-        type: String,
-        observer: '_themeChanged',
-      },
       // Set to true to render the code inside the template.
       render: {
         type: Boolean,
@@ -49,23 +42,6 @@ class CodeSample extends PolymerElement {
         type: String,
       },
     };
-  }
-
-  _themeChanged(theme) {
-    if (theme) {
-      if (theme.tagName !== 'TEMPLATE') {
-        console.error('<code-sample>:', 'theme must be a template');
-        return;
-      }
-
-      const previousTheme = this.shadowRoot.querySelector('style:not(#baseStyle)');
-      if (previousTheme) {
-        this.shadowRoot.replaceChild(
-          document.importNode(theme.content, true),
-          previousTheme
-        );
-      }
-    }
   }
 
   connectedCallback() {

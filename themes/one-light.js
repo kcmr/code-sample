@@ -1,6 +1,9 @@
-import {html} from '@polymer/polymer/polymer-element.js';
-
-export const oneLight = html`
+const html = (string) => string; // only for highlighting purpuses (editor)
+const $documentContainer = document.createElement('div');
+$documentContainer.setAttribute('style', 'display: none;');
+$documentContainer.innerHTML = html`
+<dom-module id="code-sample-theme">
+<template>
 <style>
   /*
 
@@ -97,4 +100,8 @@ export const oneLight = html`
   .hljs-link {
     text-decoration: underline;
   }
-</style>`;
+</style>
+</template>
+</dom-module>`;
+
+document.head.appendChild($documentContainer);

@@ -182,6 +182,38 @@ export const myOwnTheme = html`
 </style>`;
 ```
 
+### Themes in browsers using ShadyCSS
+Due to **[ShadyCSS limitations](https://github.com/webcomponents/shadycss#dynamically-created-styles-are-not-supported)**, dynamic change of themes is **not supported in browsers that use ShadyCSS (Firefox)**. To set a different theme for these browsers, you should import your theme as a style module with `code-sample-theme` as its `id`. 
+
+**Example:**
+
+In `your-shared-style-file.js`:
+```js
+const html = (string) => string;
+const $documentContainer = document.createElement('div');
+$documentContainer.setAttribute('style', 'display: none;');
+
+$documentContainer.innerHTML = html`
+<dom-module id="code-sample-theme">
+  <template>
+    <style>
+    /* your custom styles */
+    </style>
+  </template>
+</dom-module>`;
+
+document.head.appendChild($documentContainer);
+```
+
+Import the shared style in the main document:
+```html
+<head>
+  <script type="module" src="your-shared-style-file.js"></script>
+</head>
+```
+
+The styles will be applied to `<code-sample>` in browsers using ShadyCSS.
+
 ### Languages included in the highlightjs pack included with the component:
 
 - CSS

@@ -14,7 +14,7 @@ node_js:
 addons:
   chrome: stable
 script:
-  - xvfb-run test:sauce
+  - xvfb-run npm run test:sauce
   - codecov
 dist: trusty
 

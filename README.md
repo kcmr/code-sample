@@ -231,16 +231,21 @@ highlightjs version: v9.12.0
 
 The following custom CSS properties are available for styling:
 
-|              Custom property              |                                      Description                                      |                               Default                                |
-| :---------------------------------------- | :------------------------------------------------------------------------------------ | :------------------------------------------------------------------- |
-| --code-sample-font-family                 | font-family applied to `<pre>` and `<code>` elements                                  | Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace |
-| --code-sample-font-size                   | font-size applied to `<pre>` and `<code>` elements                                    | 14px                                                                 |
-| --code-sample-demo-padding                | padding applied to the container of the rendered code                                 | 0 0 20px                                                             |
-| --code-sample-demo                        | empty mixin applied to the container of the rendered code                             | {}                                                                   |
-| --code-sample-code-container              | empty mixin applied to code container                                                 | {}                                                                   |
-| --code-sample-code-container-hover        | empty mixin applied to code container on :hover                                       | {}                                                                   |
-| --code-sample-code-container-hover-button | empty mixin applied to the copy to clipboard button when the code container on :hover | {}                                                                   |
-| --code-sample-copy-clipboard-button       | empty mixin applied to the copy to clipboard button                                   | {}                                                                   |
+| Custom Property | Description | Default |
+| :-------------- | :---------- | :------ |
+| --code-sample-pre | empty mixin applied to `<pre>` element | {} |
+| --code-sample-font-family | font-family applied to `<pre>` and `<code>` elements | Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace |
+| --code-sample-font-size | font-size applied to `<pre>` and `<code>` elements | 14px |
+| --code-sample-line-height | line-height applied to `.hljs` | 1.3 |
+| --code-sample-hljs | empty mixin applied to `.hljs` | {} |
+| --code-sample-demo-padding | padding applied to the container of the rendered code | 0 0 20px |
+| --code-sample-demo-not-empty | empty mixin applied to the demo container when is not empty | {} |
+| --code-sample-demo | empty mixin applied to the container of the rendered code | {} |
+| --code-sample-code-container | empty mixin applied to code container | {} |
+| --code-sample-code-container-hover | empty mixin applied to code container on :hover | {} |
+| --code-sample-code-container-hover-button | empty mixin applied to the copy to clipboard button when the code container on :hover | {} |
+| --code-sample-copy-button-bg-color | background-color of the copy to clipboard button | #e0e0e0 |
+| --code-sample-copy-clipboard-button | empty mixin applied to the copy to clipboard button | {} |
 
 Included themes contain custom CSS properties to set the background and text color.   
 You may need to add these CSS properties to your own themes.

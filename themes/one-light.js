@@ -1,4 +1,4 @@
-import { html } from '../../../@polymer/lit-element/lit-element.js';
+import {html} from '@polymer/polymer/polymer-element.js';
 
 export const oneLight = html`
 <style>

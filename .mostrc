@@ -1,0 +1,7 @@
+{
+  "css-api": {
+    "file": "{{component}}.js",
+    "docs": "README.md",
+    "unformatted": true
+  }
+}

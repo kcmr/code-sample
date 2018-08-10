@@ -13,7 +13,7 @@ module.exports = {
         chrome: [
           'headless',
           'disable-gpu',
-          'no-sandbox'
+          'no-sandbox',
         ],
         firefox: [
           '-headless',
@@ -53,6 +53,6 @@ module.exports = {
         platform: 'macOS 10.13',
         version: '11.1',
       }],
-    }
+    },
   },
 };

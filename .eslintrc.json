@@ -1,0 +1,27 @@
+{
+  "extends": ["eslint:recommended", "google"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "brace-style": "off",
+    "new-cap": ["error", {
+      "capIsNewExceptions": [
+        "PolymerElement"
+      ]
+    }],
+    "no-var": "off",
+    "require-jsdoc": "off",
+    "max-len": 0,
+    "no-console": "off"
+  },
+  "globals": {
+    "Polymer": true,
+    "hljs": true
+  }
+}

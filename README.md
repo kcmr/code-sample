@@ -150,14 +150,14 @@ Example:
 
 ```html
 <script type="module">
-  import { oneLight } from '../node_modules/@kuscamara/code-sample/theme/atom-one-light.js';
+  import { oneLight } from '../node_modules/@kuscamara/code-sample/themes/one-light.js';
   document.querySelector('code-sample').theme = oneLight;
 </script>
 ```
 
 ### Available themes
 
-- atom-one-ligth.js as `oneLight`
+- one-ligth.js as `oneLight`
 - default.js as `defaultTheme`
 - github.js as `github`
 - one-dark.js as `oneDark`
@@ -174,7 +174,7 @@ The shared style should be exported as a tagged template literal.
 Example:
 
 ```js
-import { html } from '../../../@polymer/lit-element/lit-element.js';
+import { html } from '@polymer/polymer/polymer-element.js';
 
 export const myOwnTheme = html`
 <style>

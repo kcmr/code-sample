@@ -1,5 +1,5 @@
 import {oneDark} from '../themes/one-dark.js';
-import {oneLight} from '../themes/atom-one-light.js';
+import {oneLight} from '../themes/one-light.js';
 import {defaultTheme} from '../themes/default.js';
 import {github} from '../themes/github.js';
 import {solarizedLight} from '../themes/solarized-light.js';

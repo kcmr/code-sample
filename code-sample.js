@@ -112,11 +112,18 @@ class CodeSample extends PolymerElement {
 
   _themeChanged(theme) {
     if (theme) {
+      if (theme.tagName !== 'TEMPLATE') {
+        console.error('<code-sample>:', 'theme must be a template');
+        return;
+      }
+
       const previousTheme = this.shadowRoot.querySelector('style:not(#baseStyle)');
-      this.shadowRoot.replaceChild(
-        document.importNode(theme.content, true),
-        previousTheme
-      );
+      if (previousTheme) {
+        this.shadowRoot.replaceChild(
+          document.importNode(theme.content, true),
+          previousTheme
+        );
+      }
     }
   }
 

@@ -182,6 +182,34 @@
           });
         });
       });
+
+      suite('theme', () => {
+        let el;
+        let replaceChildStub;
+
+        setup(() => {
+          el = fixture('default');
+          replaceChildStub = sinon.stub(el.shadowRoot, 'replaceChild');
+        });
+
+        test('setting theme changes the default theme (oneDark)', () => {
+          const defaultTheme = el.shadowRoot.querySelector('style');
+
+          const newTheme = document.createElement('template');
+          newTheme.innerHTML = `<style>:host { display: block }</style>`;
+
+          el.theme = newTheme;
+          assert.isTrue(replaceChildStub.called);
+        });
+
+        test('theme is not replaced if is not a valid template', () => {
+          let consoleErrorStub = sinon.stub(window.console, 'error');
+          el.theme = 'any';
+          assert.notEqual(replaceChildStub.called);
+          assert.equal(consoleErrorStub.getCall(0).args[1], 'theme must be a template', 'an error is thrown in console');
+          consoleErrorStub.restore();
+        });
+      });
     </script>
   </body>
 </html>

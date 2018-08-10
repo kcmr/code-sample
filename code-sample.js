@@ -12,7 +12,8 @@ import '../../highlightjs/highlight.pack.min.js';
 class CodeSample extends PolymerElement {
   static get template() {
     return html`
-    <style include="code-sample-theme">
+    ${this.constructor.theme || oneDark}
+    <style include="code-sample-theme" id="baseStyle">
     :host {
       display: block;
     }
@@ -90,6 +91,12 @@ class CodeSample extends PolymerElement {
         type: Boolean,
         value: false,
       },
+      // Tagged template literal with custom styles.
+      // Only supported in Shadow DOM.
+      theme: {
+        type: String,
+        observer: '_themeChanged',
+      },
       // Set to true to render the code inside the template.
       render: {
         type: Boolean,
@@ -101,6 +108,30 @@ class CodeSample extends PolymerElement {
         type: String,
       },
     };
+  }
+
+  _themeChanged(theme) {
+    if (theme && this._themeCanBeChanged()) {
+      const previousTheme = this.shadowRoot.querySelector('style:not(#baseStyle)');
+      this.shadowRoot.replaceChild(
+        document.importNode(theme.content, true),
+        previousTheme
+      );
+    }
+  }
+
+  _themeCanBeChanged() {
+    if (window.ShadyCSS) {
+      console.error('<code-sample>:', 'Theme changing is not supported in Shady DOM.');
+      return;
+    }
+
+    if (this.theme.tagName !== 'TEMPLATE') {
+      console.error('<code-sample>:', 'theme must be a template');
+      return;
+    }
+
+    return true;
   }
 
   connectedCallback() {

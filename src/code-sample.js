@@ -1,7 +1,7 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import {FlattenedNodesObserver} from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import {oneDark} from './themes/one-dark.js';
-import '../../highlightjs/highlight.pack.min.js';
+import './vendor/highlight/highlight.pack.js';
 
 /**
  * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.

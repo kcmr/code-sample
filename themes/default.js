@@ -1,9 +1,6 @@
-const html = (string) => string; // only for highlighting purpuses (editor)
-const $documentContainer = document.createElement('div');
-$documentContainer.setAttribute('style', 'display: none;');
-$documentContainer.innerHTML = html`
-<dom-module id="code-sample-theme">
-<template>
+import {html} from '@polymer/polymer/polymer-element.js';
+
+export const defaultTheme = html`
 <style>
   /* Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org> */
 
@@ -99,8 +96,4 @@ $documentContainer.innerHTML = html`
   .hljs-strong {
     font-weight: bold;
   }
-</style>
-</template>
-</dom-module>`;
-
-document.head.appendChild($documentContainer);
+</style>`;

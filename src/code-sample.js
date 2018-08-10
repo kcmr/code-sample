@@ -19,7 +19,12 @@ class CodeSample extends PolymerElement {
     <slot id="content"></slot>
 
     <div id="code-container">
-      <button hidden="[[!copyClipboardButton]]" id="copyButton" title="Copy to clipboard" on-click="_copyToClipboard">Copy</button>
+      <button
+        type="button"
+        hidden="[[!copyClipboardButton]]"
+        id="copyButton"
+        title="Copy to clipboard"
+        on-click="_copyToClipboard">Copy</button>
       <pre id="code"></pre>
     </div>
     `;
@@ -138,32 +143,33 @@ class CodeSample extends PolymerElement {
       .replace(/"/g, '&quot;');
   }
 
-  _copyToClipboard() {
-    const tempNode = document.createElement('textarea');
-    document.body.appendChild(tempNode);
-    tempNode.value = this._cleanIndentation(this._getCodeTemplate().innerHTML);
-    tempNode.select();
+  _copyToClipboard(event) {
+    const copyButton = event.target;
 
-    let result = false;
+    const textarea = this._textAreaWithClonedContent();
+    textarea.select();
 
     try {
-      result = document.execCommand('copy', false);
-      this.$.copyButton.textContent = 'Done';
+      document.execCommand('copy', false);
+      copyButton.textContent = 'Done';
     } catch (err) {
       console.error(err);
-      this.$.copyButton.textContent = 'Error';
+      copyButton.textContent = 'Error';
     }
 
-    tempNode.remove();
+    textarea.remove();
 
-    // Return to the copy button after a second.
-    setTimeout(this._resetCopyButtonState.bind(this), 1000);
-
-    return result;
+    setTimeout(() => {
+      copyButton.textContent = 'Copy';
+    }, 1000);
   }
 
-  _resetCopyButtonState() {
-    this.$.copyButton.textContent = 'Copy';
+  _textAreaWithClonedContent() {
+    const textarea = document.createElement('textarea');
+    document.body.appendChild(textarea);
+    textarea.value = this._cleanIndentation(this._getCodeTemplate().innerHTML);
+
+    return textarea;
   }
 }
 

@@ -1,5 +1,5 @@
 # &lt;code-sample&gt;
-[![Build Status](https://img.shields.io/travis/kcmr/code-sample/master.svg?style=flat-square)](https://travis-ci.org/kcmr/code-sample) 
+[![Build Status](https://img.shields.io/travis/kcmr/code-sample/master.svg?style=flat-square)](https://travis-ci.org/kcmr/code-sample)
 [![codecov](https://codecov.io/gh/kcmr/code-sample/branch/master/graph/badge.svg)](https://codecov.io/gh/kcmr/code-sample)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://www.webcomponents.org/element/@kuscamara/code-sample)
 [![npm version](https://badge.fury.io/js/%40kuscamara%2Fcode-sample.svg)](https://badge.fury.io/js/%40kuscamara%2Fcode-sample)
@@ -7,7 +7,7 @@
 
 > A wrapper element for [highlight.js](https://highlightjs.org/)
 
-A themeable sample code snippet that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.   
+A themeable sample code snippet that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
 Forget to worry about spaces, indentation, HTML entities, etc.
 
 ```html
@@ -24,7 +24,7 @@ Forget to worry about spaces, indentation, HTML entities, etc.
 
 1. Install the component using Npm:
   ```bash
-  $ npm i -S @kuscamara/code-sample
+  $ npm i -S @kuscamara/code-sample highlight.js
   ```
 2. Import Web Components loader (optional):
   ```html
@@ -32,6 +32,7 @@ Forget to worry about spaces, indentation, HTML entities, etc.
   ```
 3. Import the component:
   ```html
+  <script type="module" src="node_modules/highlight.js/lib/index.js"></script>
   <script type="module" src="node_modules/@kuscamara/code-sample/code-sample.js"></script>
   ```
 
@@ -184,7 +185,7 @@ export const myOwnTheme = html`
 ```
 
 ### Themes in browsers using ShadyCSS
-Due to **[ShadyCSS limitations](https://github.com/webcomponents/shadycss#dynamically-created-styles-are-not-supported)**, dynamic change of themes is **not supported in browsers that use ShadyCSS (Firefox)**. To set a different theme for these browsers, you should import your theme as a style module with `code-sample-theme` as its `id`. 
+Due to **[ShadyCSS limitations](https://github.com/webcomponents/shadycss#dynamically-created-styles-are-not-supported)**, dynamic change of themes is **not supported in browsers that use ShadyCSS (Firefox)**. To set a different theme for these browsers, you should import your theme as a style module with `code-sample-theme` as its `id`.
 
 **Example:**
 
@@ -248,7 +249,7 @@ The following custom CSS properties are available for styling:
 | --code-sample-copy-button-bg-color | background-color of the copy to clipboard button | #e0e0e0 |
 | --code-sample-copy-clipboard-button | empty mixin applied to the copy to clipboard button | {} |
 
-Included themes contain custom CSS properties to set the background and text color.   
+Included themes contain custom CSS properties to set the background and text color.
 You may need to add these CSS properties to your own themes.
 
 | Custom property                | Description                             | Default     |

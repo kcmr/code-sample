@@ -138,7 +138,6 @@ class CodeSample extends PolymerElement {
       .replace(/&gt;/g, '>')
       .replace(/=""/g, '')
       .replace(/=&gt;/g, '=>')
-      .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');

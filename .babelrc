@@ -1,11 +1,6 @@
 {
   "plugins": [
-    "@babel/plugin-syntax-import-meta",
-    ["babel-plugin-inline-import", {
-      "extensions": [
-        ".lcss"
-      ]
-    }]
+    "@babel/plugin-syntax-import-meta"
   ],
   "presets": [
     [

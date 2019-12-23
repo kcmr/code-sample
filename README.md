@@ -22,6 +22,8 @@ Forget to worry about spaces, indentation, HTML entities, etc.
 
 ## Installation
 
+**Note**: Since version 4.0.0 **highlight.js is not directly imported by code-sample**. The library should be explicitly imported by the host application or web page, either [using the script for browser usage](https://www.npmjs.com/package/highlight.js/v/9.15.8#getting-the-library) or a [custom build](https://github.com/highlightjs/highlight.js/issues/712#issuecomment-271077569) with the desired / required languages.
+
 1. Install the component using Npm:
   ```bash
   $ npm i -S @kuscamara/code-sample
@@ -30,7 +32,11 @@ Forget to worry about spaces, indentation, HTML entities, etc.
   ```html
   <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
   ```
-3. Import the component:
+3. Import highlight.js:
+```html
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+```
+4. Import the component:
   ```html
   <script type="module" src="node_modules/@kuscamara/code-sample/code-sample.js"></script>
   ```
@@ -214,19 +220,6 @@ Import the shared style in the main document:
 ```
 
 The styles will be applied to `<code-sample>` in browsers using ShadyCSS.
-
-### Languages included in the highlightjs pack included with the component:
-
-- CSS
-- HTTP
-- JavaScript
-- Bash
-- CoffeScript
-- JSON
-- Markdown
-- HTML, XML
-
-highlightjs version: v9.12.0
 
 ### Styling
 

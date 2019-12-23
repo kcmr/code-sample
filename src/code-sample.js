@@ -1,33 +1,41 @@
 import { LitElement, html, css } from 'lit-element';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
+import { cacheElementsWithId, cleanIndentation, entitize } from './utils.js';
 
-function cacheElementsWithId(node) {
-  const getElement = (selector) => node.shadowRoot.querySelector(selector);
-  const elementsWithId = [...node.shadowRoot.querySelectorAll('[id]')];
-  const elements = elementsWithId.map((element) => ({
-    [element.id]: getElement(`#${element.id}`)
-  }));
-
-  return elements.reduce((acc, current) => Object.assign(acc, current), {});
-}
-
+/**
+ * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
+ * @extends {LitElement}
+ */
 export class CodeSample extends LitElement {
   static get properties() {
     return {
+      /**
+       * Show a copy to clipboard button
+       */
       copyToClipboardButton: {
         type: Boolean,
         attribute: 'copy-to-clipboard-button'
       },
 
+      /**
+       * Tagged template literal with custom theme
+       */
       theme: {
         type: String
       },
 
+      /**
+       * Render the code inside the template
+       */
       renderCode: {
         type: Boolean,
         attribute: 'render-code'
       },
 
+      /**
+       * Language (optional). (Eg.: html, js, css)
+       * Options are the same as the available classes for `<code>` tag using highlight.js
+       */
       type: {
         type: String
       }
@@ -215,7 +223,7 @@ export class CodeSample extends LitElement {
   _highlight(str) {
     this._code = document.createElement('code');
     if (this.type) this._code.classList.add(this.type);
-    this._code.innerHTML = this._entitize(this._cleanIndentation(str));
+    this._code.innerHTML = entitize(cleanIndentation(str));
     this.$.code.appendChild(this._code);
 
     if (window.hljs) {
@@ -223,22 +231,6 @@ export class CodeSample extends LitElement {
     } else {
       console.error('hljs not available in window');
     }
-  }
-
-  _cleanIndentation(str) {
-    const pattern = str.match(/\s*\n[\t\s]*/);
-    return str.replace(new RegExp(pattern, 'g'), '\n');
-  }
-
-  _entitize(str) {
-    return String(str)
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/=""/g, '')
-      .replace(/=&gt;/g, '=>')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
   }
 
   _copyToClipboard(event) {
@@ -265,7 +257,7 @@ export class CodeSample extends LitElement {
   _textAreaWithClonedContent() {
     const textarea = document.createElement('textarea');
     document.body.appendChild(textarea);
-    textarea.value = this._cleanIndentation(this._getCodeTemplate().innerHTML);
+    textarea.value = cleanIndentation(this._getCodeTemplate().innerHTML);
 
     return textarea;
   }

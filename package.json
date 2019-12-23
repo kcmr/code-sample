@@ -18,6 +18,10 @@
   "name": "@kuscamara/code-sample",
   "version": "3.0.2",
   "main": "code-sample.js",
+  "files": [
+    "code-sample.js",
+    "themes/"
+  ],
   "author": "Kus Cámara <kus.camara@gmail.com>",
   "license": "MIT",
   "dependencies": {

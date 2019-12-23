@@ -35,11 +35,16 @@
     "gulp-eslint": "^5.0.0",
     "gulp-inline-source": "^3.2.0",
     "gulp-postcss": "^8.0.0",
+    "natives": "^1.1.6",
+    "polymer-cli": "^1.9.11",
     "portfinder": "^1.0.13",
     "postcss-pixels-to-rem": "^0.8.0",
     "wct-browser-legacy": "~1.0.0",
     "wct-istanbul": "~0.14.3",
     "web-component-tester": "~6.6.0"
+  },
+  "peerDependencies": {
+    "highlight.js": "^9.17.0"
   },
   "scripts": {
     "start": "gulp serve",

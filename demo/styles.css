@@ -1,6 +1,9 @@
+html {
+  --font-stack-sans: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
 body {
-  font: caption;
-  font-size: 100%;
+  font-family: var(--font-stack-sans);
   background: #E6E8E8;
   -webkit-tap-highlight-color: transparent;
 }
@@ -80,4 +83,3 @@ code-sample {
 .select select {
   font: inherit;
 }
-

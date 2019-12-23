@@ -1,100 +1,194 @@
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-import {FlattenedNodesObserver} from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import {oneDark} from './themes/one-dark.js';
+import { LitElement, html, css } from 'lit-element';
+import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 
-/**
- * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
- * @polymer
- * @customElement
- * @extends {PolymerElement}
- * @demo https://kcmr.github.io/code-sample/
- */
-class CodeSample extends PolymerElement {
-  static get template() {
-    return html`
-    ${this.constructor.theme || oneDark}
-    <link rel="stylesheet" href="code-sample.css" include="code-sample-theme" inline id="baseStyle">
+function cacheElementsWithId(node) {
+  const getElement = (selector) => node.shadowRoot.querySelector(selector);
+  const elementsWithId = [...node.shadowRoot.querySelectorAll('[id]')];
+  const elements = elementsWithId.map((element) => ({
+    [element.id]: getElement(`#${element.id}`)
+  }));
 
-    <div id="demo" class="demo"></div>
-    <slot id="content"></slot>
+  return elements.reduce((acc, current) => Object.assign(acc, current), {});
+}
 
-    <div id="code-container">
-      <button
-        type="button"
-        hidden="[[!copyClipboardButton]]"
-        id="copyButton"
-        title="Copy to clipboard"
-        on-click="_copyToClipboard">Copy</button>
-      <pre id="code"></pre>
-    </div>
-    `;
-  }
-
+export class CodeSample extends LitElement {
   static get properties() {
     return {
-      // Set to true to show a copy to clipboard button.
-      copyClipboardButton: {
+      copyToClipboardButton: {
         type: Boolean,
-        value: false,
+        attribute: 'copy-to-clipboard-button'
       },
-      // Tagged template literal with custom styles.
-      // Only supported in Shadow DOM.
+
       theme: {
-        type: String,
-        observer: '_themeChanged',
+        type: String
       },
-      // Set to true to render the code inside the template.
-      render: {
+
+      renderCode: {
         type: Boolean,
-        value: false,
+        attribute: 'render-code'
       },
-      // Code type (optional). (eg.: html, js, css)
-      // Options are the same as the available classes for `<code>` tag using highlight.js
+
       type: {
-        type: String,
-      },
+        type: String
+      }
     };
   }
 
-  _themeChanged(theme) {
-    if (theme && this._themeCanBeChanged()) {
-      const previousTheme = this.shadowRoot.querySelector('style:not(#baseStyle)');
-      this.shadowRoot.replaceChild(
-        document.importNode(theme.content, true),
-        previousTheme
-      );
-    }
-  }
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+      }
 
-  _themeCanBeChanged() {
-    if (window.ShadyCSS) {
-      console.error('<code-sample>:', 'Theme changing is not supported in Shady DOM.');
-      return;
-    }
+      :host([hidden]),
+      [hidden] {
+        display: none;
+      }
 
-    if (this.theme.tagName !== 'TEMPLATE') {
-      console.error('<code-sample>:', 'theme must be a template');
-      return;
-    }
+      pre {
+        margin: 0;
+      }
 
-    return true;
+      pre, code {
+        font-family: var(--code-sample-font-family, Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace);
+        font-size: var(--code-sample-font-size, 14px);
+      }
+
+      .hljs {
+        padding: 0 20px;
+        line-height: var(--code-sample-line-height, 1.3);
+      }
+
+      .demo:not(:empty) {
+        padding: var(--code-sample-demo-padding, 0 0 20px);
+      }
+
+      #code-container {
+        position: relative;
+      }
+
+      button {
+        background: var(--code-sample-copy-button-bg-color, #e0e0e0);
+        border: none;
+        cursor: pointer;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-transform: uppercase;
+      }
+
+      /* Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org> */
+
+      .hljs {
+        display: block;
+        overflow-x: auto;
+        background: var(--code-sample-background, #F0F0F0);
+      }
+
+
+      /* Base color: saturation 0; */
+
+      .hljs,
+      .hljs-subst {
+        color: var(--code-sample-color, #444);
+      }
+
+      .hljs-comment {
+        color: #888888;
+      }
+
+      .hljs-keyword,
+      .hljs-attribute,
+      .hljs-selector-tag,
+      .hljs-meta-keyword,
+      .hljs-doctag,
+      .hljs-name {
+        font-weight: bold;
+      }
+
+
+      /* User color: hue: 0 */
+
+      .hljs-type,
+      .hljs-string,
+      .hljs-number,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-quote,
+      .hljs-template-tag,
+      .hljs-deletion {
+        color: #880000;
+      }
+
+      .hljs-title,
+      .hljs-section {
+        color: #880000;
+        font-weight: bold;
+      }
+
+      .hljs-regexp,
+      .hljs-symbol,
+      .hljs-variable,
+      .hljs-template-variable,
+      .hljs-link,
+      .hljs-selector-attr,
+      .hljs-selector-pseudo {
+        color: #BC6060;
+      }
+
+
+      /* Language color: hue: 90; */
+
+      .hljs-literal {
+        color: #78A960;
+      }
+
+      .hljs-built_in,
+      .hljs-bullet,
+      .hljs-code,
+      .hljs-addition {
+        color: #397300;
+      }
+
+
+      /* Meta color: hue: 200 */
+
+      .hljs-meta {
+        color: #1f7199;
+      }
+
+      .hljs-meta-string {
+        color: #4d99bf;
+      }
+
+
+      /* Misc effects */
+
+      .hljs-emphasis {
+        font-style: italic;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+    `;
   }
 
   connectedCallback() {
     super.connectedCallback();
+
     setTimeout(() => {
-      if (this.querySelector('template')) {
-        this._observer = new FlattenedNodesObserver(this.$.content, () => this._updateContent());
-      } else if (this.childNodes.length) {
-        console.error('<code-sample>:', 'content must be provided inside a <template> tag');
-      }
+      this.$ = cacheElementsWithId(this);
+      this._init();
     });
   }
 
-  disconnectedCallback() {
-    if (this._observer) {
-      this._observer.disconnect();
-      this._observer = null;
+  _init() {
+    if (this.querySelector('template')) {
+      this._observer = new FlattenedNodesObserver(this.$.content, () => this._updateContent());
+    } else if (this.childNodes.length) {
+      console.error('<code-sample>:', 'content must be provided inside a <template> tag');
     }
   }
 
@@ -104,7 +198,7 @@ class CodeSample extends PolymerElement {
 
     const template = this._getCodeTemplate();
 
-    if (this.render) {
+    if (this.renderCode) {
       this._demo = this.$.demo.appendChild(
         document.importNode(template.content, true)
       );
@@ -175,6 +269,21 @@ class CodeSample extends PolymerElement {
 
     return textarea;
   }
-}
 
-customElements.define('code-sample', CodeSample);
+  render() {
+    return html`
+      <div id="demo" class="demo"></div>
+      <slot id="content"></slot>
+
+      <div id="code-container">
+        <button
+          type="button"
+          ?hidden="${!this.copyClipboardButton}"
+          id="copyButton"
+          title="Copy to clipboard"
+          @click="${this._copyToClipboard}">Copy</button>
+        <pre id="code"></pre>
+      </div>
+    `;
+  }
+}

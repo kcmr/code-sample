@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "@babel/plugin-syntax-import-meta"
+  ],
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "modules": false
+      }
+    ]
+  ]
+}

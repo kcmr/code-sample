@@ -1,6 +1,10 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import { cacheElementsWithId, cleanIndentation, entitize } from './utils.js';
+import { base as style, themes } from './code-sample-styles.js';
+
+const DEFAULT_THEME = 'one-dark';
+const getTheme = (theme = DEFAULT_THEME) => themes[theme];
 
 /**
  * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
@@ -87,147 +91,6 @@ export class CodeSample extends LitElement {
     };
   }
 
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-      }
-
-      :host([hidden]),
-      [hidden] {
-        display: none;
-      }
-
-      pre {
-        margin: 0;
-      }
-
-      pre, code {
-        font-family: var(--code-sample-font-family, Operator Mono, Inconsolata, Roboto Mono, monaco, consolas, monospace);
-        font-size: var(--code-sample-font-size, 14px);
-      }
-
-      .hljs {
-        padding: 0 20px;
-        line-height: var(--code-sample-line-height, 1.3);
-      }
-
-      .demo:not(:empty) {
-        padding: var(--code-sample-demo-padding, 0 0 20px);
-      }
-
-      #code-container {
-        position: relative;
-      }
-
-      button {
-        background: var(--code-sample-copy-button-bg-color, #e0e0e0);
-        border: none;
-        cursor: pointer;
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        text-transform: uppercase;
-      }
-
-      /* Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org> */
-
-      .hljs {
-        display: block;
-        overflow-x: auto;
-        background: var(--code-sample-background, #F0F0F0);
-      }
-
-
-      /* Base color: saturation 0; */
-
-      .hljs,
-      .hljs-subst {
-        color: var(--code-sample-color, #444);
-      }
-
-      .hljs-comment {
-        color: #888888;
-      }
-
-      .hljs-keyword,
-      .hljs-attribute,
-      .hljs-selector-tag,
-      .hljs-meta-keyword,
-      .hljs-doctag,
-      .hljs-name {
-        font-weight: bold;
-      }
-
-
-      /* User color: hue: 0 */
-
-      .hljs-type,
-      .hljs-string,
-      .hljs-number,
-      .hljs-selector-id,
-      .hljs-selector-class,
-      .hljs-quote,
-      .hljs-template-tag,
-      .hljs-deletion {
-        color: #880000;
-      }
-
-      .hljs-title,
-      .hljs-section {
-        color: #880000;
-        font-weight: bold;
-      }
-
-      .hljs-regexp,
-      .hljs-symbol,
-      .hljs-variable,
-      .hljs-template-variable,
-      .hljs-link,
-      .hljs-selector-attr,
-      .hljs-selector-pseudo {
-        color: #BC6060;
-      }
-
-
-      /* Language color: hue: 90; */
-
-      .hljs-literal {
-        color: #78A960;
-      }
-
-      .hljs-built_in,
-      .hljs-bullet,
-      .hljs-code,
-      .hljs-addition {
-        color: #397300;
-      }
-
-
-      /* Meta color: hue: 200 */
-
-      .hljs-meta {
-        color: #1f7199;
-      }
-
-      .hljs-meta-string {
-        color: #4d99bf;
-      }
-
-
-      /* Misc effects */
-
-      .hljs-emphasis {
-        font-style: italic;
-      }
-
-      .hljs-strong {
-        font-weight: bold;
-      }
-    `;
-  }
-
   constructor() {
     super();
     this.language = '';
@@ -312,8 +175,17 @@ export class CodeSample extends LitElement {
     }
   }
 
+  static get styles() {
+    return css`${style}`;
+  }
+
+  get _theme() {
+    return css`${unsafeCSS(getTheme(this.theme))}`;
+  }
+
   render() {
     return html`
+      <style>${this._theme}</style>
       <div id="demo" class="demo"></div>
       <slot id="content"></slot>
 

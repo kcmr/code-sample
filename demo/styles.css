@@ -68,18 +68,3 @@ code-sample {
 .title-button h1 { margin-bottom: 0; }
 
 .center { text-align: center; }
-
-.select {
-  display: flex;
-  align-items: center;
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.select span {
-   margin-right: 8px;
-}
-
-.select select {
-  font: inherit;
-}

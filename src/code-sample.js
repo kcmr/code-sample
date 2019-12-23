@@ -11,10 +11,47 @@ export class CodeSample extends LitElement {
     return {
       /**
        * Show a copy to clipboard button
+       * @default undefined
        */
-      copyToClipboardButton: {
+      copyClipboardButton: {
         type: Boolean,
-        attribute: 'copy-to-clipboard-button'
+        attribute: 'copy-clipboard-button'
+      },
+
+      /**
+       * Text of the copy to clipboard button
+       * @default 'Copy'
+       */
+      copyButtonText: {
+        type: String,
+        attribute: 'copy-button-text'
+      },
+
+      /**
+       * Text of the copy to clipboard button after success copy
+       * @default 'Copied!'
+       */
+      copyButtonTextSuccess: {
+        type: String,
+        attribute: 'copy-button-text-success'
+      },
+
+      /**
+       * Text of the copy to clipboard button after error copying
+       * @default 'Error'
+       */
+      copyButtonTextError: {
+        type: String,
+        attribute: 'copy-button-text-error'
+      },
+
+      /**
+       * Title of the copy to clipboard button
+       * @default 'Copy to clipboard'
+       */
+      copyButtonTitle: {
+        type: String,
+        attribute: 'copy-button-title'
       },
 
       /**
@@ -36,7 +73,15 @@ export class CodeSample extends LitElement {
        * Language (optional). (Eg.: html, js, css)
        * Options are the same as the available classes for `<code>` tag using highlight.js
        */
-      type: {
+      language: {
+        type: String
+      },
+
+      _renderedCode: {
+        type: String
+      },
+
+      _copyButtonText: {
         type: String
       }
     };
@@ -183,83 +228,88 @@ export class CodeSample extends LitElement {
     `;
   }
 
+  constructor() {
+    super();
+    this.language = '';
+    this.copyButtonText = 'Copy';
+    this.copyButtonTextSuccess = 'Copied!';
+    this.copyButtonTextError = 'Error';
+    this.copyButtonTitle = 'Copy to clipboard';
+    this._copyButtonText = this.copyButtonText;
+  }
+
   connectedCallback() {
     super.connectedCallback();
 
     setTimeout(() => {
       this.$ = cacheElementsWithId(this);
-      this._init();
+      this._getCodeInsideTemplate();
     });
   }
 
-  _init() {
-    if (this.querySelector('template')) {
-      this._observer = new FlattenedNodesObserver(this.$.content, () => this._updateContent());
+  disconnectedCallback() {
+    super.disconnectedCallback();
+
+    if (this._observer) {
+      this._observer.disconnect();
+      this._observer = null;
+    }
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('_renderedCode')) {
+      this._highlight();
+    }
+  }
+
+  _getCodeInsideTemplate() {
+    const template = this.querySelector('template');
+
+    if (template) {
+      this._observer = new FlattenedNodesObserver(
+        this.$.content,
+        this._setRenderedCode.bind(this)
+      );
     } else if (this.childNodes.length) {
       console.error('<code-sample>:', 'content must be provided inside a <template> tag');
     }
   }
 
-  _updateContent() {
-    if (this._code) this._code.parentNode.removeChild(this._code);
-    if (this._demo) this.$.demo.innerHTML = '';
-
-    const template = this._getCodeTemplate();
-
-    if (this.renderCode) {
-      this._demo = this.$.demo.appendChild(
-        document.importNode(template.content, true)
-      );
-    }
-
-    this._highlight(template.innerHTML);
+  _setRenderedCode() {
+    this._renderedCode = entitize(this._getTemplateContent());
   }
 
-  _getCodeTemplate() {
-    const nodes = FlattenedNodesObserver.getFlattenedNodes(this.$.content);
-    return [].filter.call(nodes, (node) => node.nodeType === Node.ELEMENT_NODE)[0];
+  _getTemplateContent() {
+    const template = this.querySelector('template');
+    return cleanIndentation(template.innerHTML);
   }
 
-  _highlight(str) {
-    this._code = document.createElement('code');
-    if (this.type) this._code.classList.add(this.type);
-    this._code.innerHTML = entitize(cleanIndentation(str));
-    this.$.code.appendChild(this._code);
-
+  _highlight() {
     if (window.hljs) {
-      hljs.highlightBlock(this._code);
+      hljs.highlightBlock(this.$.code);
     } else {
       console.error('hljs not available in window');
     }
   }
 
-  _copyToClipboard(event) {
-    const copyButton = event.target;
-
-    const textarea = this._textAreaWithClonedContent();
+  _copyToClipboard() {
+    const textarea = document.createElement('textarea');
+    document.body.appendChild(textarea);
+    textarea.value = this._getTemplateContent();
     textarea.select();
 
     try {
       document.execCommand('copy', false);
-      copyButton.textContent = 'Done';
+      this._copyButtonText = this.copyButtonTextSuccess;
     } catch (err) {
       console.error(err);
-      copyButton.textContent = 'Error';
+      this._copyButtonText = this.copyButtonTextError;
+    } finally {
+      textarea.remove();
+      setTimeout(() => {
+        this._copyButtonText = this.copyButtonText;
+      }, 1000);
     }
-
-    textarea.remove();
-
-    setTimeout(() => {
-      copyButton.textContent = 'Copy';
-    }, 1000);
-  }
-
-  _textAreaWithClonedContent() {
-    const textarea = document.createElement('textarea');
-    document.body.appendChild(textarea);
-    textarea.value = cleanIndentation(this._getCodeTemplate().innerHTML);
-
-    return textarea;
   }
 
   render() {
@@ -271,10 +321,14 @@ export class CodeSample extends LitElement {
         <button
           type="button"
           ?hidden="${!this.copyClipboardButton}"
-          id="copyButton"
-          title="Copy to clipboard"
-          @click="${this._copyToClipboard}">Copy</button>
-        <pre id="code"></pre>
+          title="${this.copyButtonTitle}"
+          @click="${this._copyToClipboard}">${this._copyButtonText}</button>
+
+        <pre><code
+          id="code"
+          class="${this.language}"
+          .innerHTML="${this._renderedCode}"
+        ></code></pre>
       </div>
     `;
   }

@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/kcmr/code-sample/",
   "name": "@kuscamara/code-sample",
-  "version": "3.0.2",
+  "version": "4.0.0-pre.0",
   "main": "code-sample.js",
   "files": [
     "code-sample.js",

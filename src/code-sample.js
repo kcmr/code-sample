@@ -1,7 +1,6 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import {FlattenedNodesObserver} from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import {oneDark} from './themes/one-dark.js';
-import './vendor/highlight/highlight.pack.js';
 
 /**
  * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
@@ -124,7 +123,12 @@ class CodeSample extends PolymerElement {
     if (this.type) this._code.classList.add(this.type);
     this._code.innerHTML = this._entitize(this._cleanIndentation(str));
     this.$.code.appendChild(this._code);
-    hljs.highlightBlock(this._code);
+
+    if (window.hljs) {
+      hljs.highlightBlock(this._code);
+    } else {
+      console.error('hljs not available in window');
+    }
   }
 
   _cleanIndentation(str) {

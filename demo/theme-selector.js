@@ -1,14 +1,13 @@
 import { LitElement, html, css } from 'lit-element';
 
 const themes = [
+  'night-owl',
+  'vs-2015',
+  'ocean',
   'one-dark',
-  'one-light',
-  'kustom-dark',
   'kustom-light',
-  'solarized-dark',
-  'solarized-light',
   'github',
-  'original',
+  'solarized-light',
 ];
 
 class ThemeSelector extends LitElement {
@@ -43,7 +42,7 @@ class ThemeSelector extends LitElement {
         <span>Theme</span>
         <select name="theme" @change="${this._onChange}">
           ${themes.map((theme, index) => html`
-            <option ?selected="${index === 0}">${theme}</option>
+            <option value="${theme}" ?selected="${index === 0}">${theme} ${index === 0 ? '(default)' : ''}</option>
           `)}
         </select>
       </label>

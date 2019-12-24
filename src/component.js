@@ -3,7 +3,7 @@ import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nod
 import { cleanIndentation, entitize } from './utils.js';
 import { base as style, themes } from './styles.js';
 
-const DEFAULT_THEME = 'one-dark';
+const DEFAULT_THEME = 'night-owl';
 const getTheme = (theme = DEFAULT_THEME) => themes[theme];
 
 /**

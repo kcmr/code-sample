@@ -2,13 +2,15 @@ import { LitElement } from 'lit-element';
 import { cacheElementsWithId, logger } from './utils.js';
 export * from 'lit-element';
 
+const TAG = Symbol('tag');
+
 export class Base extends LitElement {
   static set tag(value) {
-    this._tag = value;
+    this[TAG] = value;
   }
 
   static get tag() {
-    return this._tag;
+    return this[TAG];
   }
 
   connectedCallback() {

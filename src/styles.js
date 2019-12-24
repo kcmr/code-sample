@@ -141,7 +141,7 @@ const original = css`
 }
 `;
 
-const github = css`;
+const github = css`
 /* github.com style (c) Vasily Polovnyov <vast@whiteants.net> */
 
 .hljs {

@@ -4,7 +4,7 @@ import { cleanIndentation, entitize } from './utils.js';
 import { base as style, themes } from './styles.js';
 
 const DEFAULT_THEME = 'night-owl';
-const getTheme = (theme = DEFAULT_THEME) => themes[theme];
+const getTheme = (theme = DEFAULT_THEME) => themes[theme] || themes[DEFAULT_THEME];
 
 /**
  * Custom Element class definition that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
@@ -59,14 +59,27 @@ export class Component extends Base {
       },
 
       /**
-       * Tagged template literal with custom theme
+       * Name of theme to use.
+       * Available options (github | kustom-light | night-owl | ocean | one-dark | solarized-light | vs-2015).
+       * If an unknown theme name is provided, the default theme (night-owl) will be used.
+       * @default 'night-owl'
        */
       theme: {
         type: String
       },
 
       /**
+       * Path (src) of a stylesheet used as a theme.
+       * `theme` is not used when `stylesheet` is set.
+       * @default undefined
+       */
+      stylesheet: {
+        type: String,
+      },
+
+      /**
        * Render the code inside the template
+       * @default undefined
        */
       renderCode: {
         type: Boolean,
@@ -76,16 +89,10 @@ export class Component extends Base {
       /**
        * Language (optional). (Eg.: html, js, css)
        * Options are the same as the available classes for `<code>` tag using highlight.js
+       * @default undefined
        */
       language: {
         type: String
-      },
-
-      /**
-       * Path of a custom CSS file
-       */
-      stylesheet: {
-        type: String,
       },
 
       _renderedCode: {
@@ -217,10 +224,9 @@ export class Component extends Base {
 
   render() {
     return html`
-      <style>${this._theme}</style>
-
-      ${this.stylesheet ? html`
-        <link rel="stylesheet" href="${this.stylesheet}">` : ''
+      ${this.stylesheet ?
+        html`<link rel="stylesheet" href="${this.stylesheet}">` :
+        html`<style>${this._theme}</style>`
       }
 
       <div id="demo" class="demo"></div>

@@ -180,7 +180,7 @@ export class Component extends Base {
 
     const code = Object.assign(document.createElement('code'), {
       innerHTML: this._renderedCode,
-      className: this.language
+      className: this.language || ''
     });
 
     this.$.pre.appendChild(code);

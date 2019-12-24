@@ -8,7 +8,7 @@ const getTheme = (theme = DEFAULT_THEME) => themes[theme];
 
 /**
  * Custom Element class definition that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
- * @extends {LitElement}
+ * @extends {Base}
  */
 export class Component extends Base {
   static get properties() {
@@ -100,7 +100,6 @@ export class Component extends Base {
 
   constructor() {
     super();
-    this.language = '';
     this.copyButtonText = 'Copy';
     this.copyButtonTextSuccess = 'Copied!';
     this.copyButtonTextError = 'Error';
@@ -126,7 +125,7 @@ export class Component extends Base {
   }
 
   updated(changedProperties) {
-    if (changedProperties.has('_renderedCode')) {
+    if (changedProperties.has('_renderedCode') || changedProperties.has('language')) {
       this._highlight();
     }
   }
@@ -170,10 +169,22 @@ export class Component extends Base {
 
   _highlight() {
     if (window.hljs) {
-      hljs.highlightBlock(this.$.code);
+      this._updateCode();
     } else {
       this.log.error('hljs() function from highlight.js is not available in window');
     }
+  }
+
+  _updateCode() {
+    this.$.pre.innerHTML = '';
+
+    const code = Object.assign(document.createElement('code'), {
+      innerHTML: this._renderedCode,
+      className: this.language
+    });
+
+    this.$.pre.appendChild(code);
+    hljs.highlightBlock(code);
   }
 
   _copyToClipboard() {
@@ -222,11 +233,7 @@ export class Component extends Base {
           title="${this.copyButtonTitle}"
           @click="${this._copyToClipboard}">${this._copyButtonText}</button>
 
-        <pre><code
-          id="code"
-          class="${this.language}"
-          .innerHTML="${this._renderedCode}"
-        ></code></pre>
+        <pre id="pre"></pre>
       </div>
     `;
   }

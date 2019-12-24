@@ -59,7 +59,7 @@ export class Component extends Base {
       },
 
       /**
-       * Name of theme to use.
+       * Name of the theme to use.
        * Available options (github | kustom-light | night-owl | ocean | one-dark | solarized-light | vs-2015).
        * If an unknown theme name is provided, the default theme (night-owl) will be used.
        * @default 'night-owl'
@@ -132,7 +132,11 @@ export class Component extends Base {
   }
 
   updated(changedProperties) {
-    if (changedProperties.has('_renderedCode') || changedProperties.has('language')) {
+    if (changedProperties.has('_renderedCode')) {
+      this._highlight();
+    }
+
+    if (changedProperties.has('language') && this._renderedCode) {
       this._highlight();
     }
   }

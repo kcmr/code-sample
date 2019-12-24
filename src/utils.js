@@ -23,3 +23,11 @@ export function cleanIndentation(str) {
   const pattern = str.match(/\s*\n[\t\s]*/);
   return str.replace(new RegExp(pattern, 'g'), '\n');
 }
+
+export function logger(context) {
+  return {
+    error(message) {
+      console.error(`<${context}>:`, message);
+    }
+  }
+}

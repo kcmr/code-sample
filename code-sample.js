@@ -1,6 +1,8 @@
-import { CodeSample } from './src/code-sample.js';
+import { Component } from './src/index.js';
 
-if (!window.customElements.get('code-sample')) {
-  customElements.define('code-sample', CodeSample);
+Component.tag = 'code-sample';
+
+if (!window.customElements.get(Component.tag)) {
+  customElements.define(Component.tag, Component);
 }
 

@@ -9,6 +9,7 @@
     .navy-bg { --code-sample-background: #000D25; }
     .white-bg { --code-sample-background: #eeeef1; }
   </style>
+  <link rel="stylesheet" as="style" importance="low" media="(max-width: 0px)" href="demo-theme.css" onload="window.externalStyle = this.href">
   <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
   <script src="./index.js"></script>
 </head>
@@ -112,7 +113,7 @@
       </div>
 
       <div class="demo-sample">
-        <p>Use the boolean attribute <code>render</code> to render the code inside the <code>&lt;template&gt;</code> tag.</p>
+        <p>Use the boolean attribute <code>render-code</code> to render the code inside the <code>&lt;template&gt;</code> tag.</p>
         <code-sample render-code id="demo-5">
           <template>
             <style>
@@ -162,7 +163,7 @@
     <div class="demo">
       <div class="demo-text">
         <h1>Change content dynamically</h1>
-        <theme-selector target="#demo-7"></theme-selector>
+        <theme-selector target="#sample"></theme-selector>
       </div>
       <div class="demo-sample">
         <p>
@@ -200,6 +201,29 @@
             }
           </template>
         </code-sample>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="demo-text">
+        <h1>Using stylesheet</h1>
+      </div>
+
+      <div class="demo-sample">
+        <code-sample id="demo-9">
+          <template>
+            <custom-element boolean-attribute>content</custom-element>
+
+            <div class="something">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet distinctio nam, possimus officia error delectus impedit libero corrupti, sunt, sapiente suscipit. Esse, quisquam tempore similique eveniet veritatis pariatur adipisci sit.</p>
+            </div>
+          </template>
+        </code-sample>
+        <script>
+          // Parcel adds hashes to files so we don't know the hash until the file is imported
+          // using an standard (<link rel="stylesheet">) method
+          window['demo-9'].stylesheet = externalStyle;
+        </script>
       </div>
     </div>
   </div>

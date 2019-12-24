@@ -1,1 +1,1 @@
-export { CodeSample } from './code-sample.js';
+export { Component } from './component.js';

@@ -1,16 +1,16 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { Base, html, css, unsafeCSS } from './base.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import { cacheElementsWithId, cleanIndentation, entitize } from './utils.js';
-import { base as style, themes } from './code-sample-styles.js';
+import { cleanIndentation, entitize } from './utils.js';
+import { base as style, themes } from './styles.js';
 
 const DEFAULT_THEME = 'one-dark';
 const getTheme = (theme = DEFAULT_THEME) => themes[theme];
 
 /**
- * `<code-sample>` uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
+ * Custom Element class definition that uses [highlight.js](https://highlightjs.org/) for syntax highlighting.
  * @extends {LitElement}
  */
-export class CodeSample extends LitElement {
+export class Component extends Base {
   static get properties() {
     return {
       /**
@@ -81,6 +81,13 @@ export class CodeSample extends LitElement {
         type: String
       },
 
+      /**
+       * Path of a custom CSS file
+       */
+      stylesheet: {
+        type: String,
+      },
+
       _renderedCode: {
         type: String
       },
@@ -105,7 +112,6 @@ export class CodeSample extends LitElement {
     super.connectedCallback();
 
     setTimeout(() => {
-      this.$ = cacheElementsWithId(this);
       this._getCodeInsideTemplate();
     });
   }
@@ -131,10 +137,18 @@ export class CodeSample extends LitElement {
     if (template) {
       this._observer = new FlattenedNodesObserver(
         this.$.content,
-        this._setRenderedCode.bind(this)
+        this._updateContent.bind(this)
       );
     } else if (this.childNodes.length) {
-      console.error('<code-sample>:', 'content must be provided inside a <template> tag');
+      this.log.error('code must be provided inside a <template> tag');
+    }
+  }
+
+  _updateContent() {
+    this._setRenderedCode();
+
+    if (this.renderCode) {
+      this._setDemo();
     }
   }
 
@@ -143,15 +157,22 @@ export class CodeSample extends LitElement {
   }
 
   _getTemplateContent() {
-    const template = this.querySelector('template');
-    return cleanIndentation(template.innerHTML);
+    this._template = this.querySelector('template');
+    return cleanIndentation(this._template.innerHTML);
+  }
+
+  _setDemo() {
+    this.$.demo.innerHTML = '';
+    this.$.demo.appendChild(
+      document.importNode(this._template.content, true)
+    );
   }
 
   _highlight() {
     if (window.hljs) {
       hljs.highlightBlock(this.$.code);
     } else {
-      console.error('hljs not available in window');
+      this.log.error('hljs() function from highlight.js is not available in window');
     }
   }
 
@@ -186,6 +207,11 @@ export class CodeSample extends LitElement {
   render() {
     return html`
       <style>${this._theme}</style>
+
+      ${this.stylesheet ? html`
+        <link rel="stylesheet" href="${this.stylesheet}">` : ''
+      }
+
       <div id="demo" class="demo"></div>
       <slot id="content"></slot>
 

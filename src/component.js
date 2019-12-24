@@ -186,7 +186,7 @@ export class Component extends Base {
       document.execCommand('copy', false);
       this._copyButtonText = this.copyButtonTextSuccess;
     } catch (err) {
-      console.error(err);
+      this.log.error(err);
       this._copyButtonText = this.copyButtonTextError;
     } finally {
       textarea.remove();

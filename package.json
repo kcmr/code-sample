@@ -24,7 +24,8 @@
     "test:snapshots:prune": "karma start --coverage --prune-snapshots",
     "test:snapshots:update": "karma start --coverage --update-snapshots",
     "prestart": "rimraf dist",
-    "start": "parcel demo/index.html"
+    "start": "parcel demo/index.html",
+    "build:demo": "parcel build demo/index.html --no-minify"
   },
   "dependencies": {
     "@polymer/polymer": "^3.3.1",

@@ -9,8 +9,7 @@
     .navy-bg { --code-sample-background: #000D25; }
     .white-bg { --code-sample-background: #eeeef1; }
   </style>
-  <link rel="stylesheet" as="style" importance="low" media="(max-width: 0px)" href="demo-theme.css" onload="window.externalStyle = this.href">
-  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  <link rel="stylesheet" as="style" importance="low" href="demo-theme.css" onload="window.externalStyle = this.href">
   <script src="./index.js"></script>
 </head>
 <body>
@@ -50,34 +49,6 @@
             const something = param => {
               // comment
               let a = `${param}-something`;
-            }
-          </template>
-        </code-sample>
-      </div>
-    </div>
-
-    <div class="demo">
-      <div class="demo-text">
-        <h1>Tagged template literals</h1>
-        <theme-selector target="#demo-3"></theme-selector>
-      </div>
-
-      <div class="demo-sample">
-        <p>Set the <code>type</code> attribute to <b>js</b>, <b>jsx</b> or <b>javascript</b> when using tagged template literals.</p>
-
-        <code-sample type="js" id="demo-3">
-          <template>
-            class MyElement extends PolymerElement {
-              static get template() {
-                return html`
-                  <style>
-                    :host {
-                      display: block;
-                    }
-                  </style>
-                  <p>Hello world!</p>
-                `;
-              }
             }
           </template>
         </code-sample>

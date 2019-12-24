@@ -58,8 +58,8 @@ export const ocean = css`
 .hljs {
   display: block;
   overflow-x: auto;
-  background: #2b303b;
-  color: #c0c5ce;
+  color: var(--code-sample-background, #c0c5ce);
+  background: var(--code-sample-color, #2b303b);
   padding: 0.5em;
 }
 

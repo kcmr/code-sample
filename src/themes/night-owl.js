@@ -5,8 +5,8 @@ export const nightOwl = css`
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #011627;
-  color: #d6deeb;
+  color: var(--code-sample-color, #d6deeb);
+  background: var(--code-sample-background, #011627);
 }
 
 /* General Purpose */

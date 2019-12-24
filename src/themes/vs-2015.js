@@ -5,8 +5,8 @@ export const vs2015 = css`
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #1E1E1E;
-  color: #DCDCDC;
+  color: var(--code-sample-background, #DCDCDC);
+  background: var(--code-sample-color, #1E1E1E);
 }
 
 .hljs-keyword,

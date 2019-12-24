@@ -4,8 +4,8 @@ export const solarizedLight = css`
 .hljs {
   display: block;
   overflow-x: auto;
-  background: var(--code-sample-background, #fdf6e3);
   color: var(--code-sample-color, #657b83);
+  background: var(--code-sample-background, #fdf6e3);
 }
 
 .hljs-comment,

@@ -6,8 +6,13 @@
   <title>code-sample demo</title>
   <style>
     code-sample + code-sample { margin-top: 20px; }
-    .navy-bg { --code-sample-background: #000D25; }
-    .white-bg { --code-sample-background: #eeeef1; }
+    .purple-bg {
+      --code-sample-background: #591a81;
+    }
+    .white-bg {
+      --code-sample-background: #eeeef1;
+      --code-sample-color: #31373D;
+    }
   </style>
   <link rel="stylesheet" as="style" importance="low" href="demo-theme.css" onload="window.externalStyle = this.href">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400">
@@ -125,7 +130,7 @@
         <code-sample copy-clipboard-button id="demo-6">
           <template>
             <div class="some-class">
-              <p>Lorem ipsum dolor…</p>
+              <p>Lorem ipsum dolor</p>
             </div>
           </template>
         </code-sample>
@@ -152,11 +157,10 @@
     <div class="demo">
       <div class="demo-text">
         <h1>Custom background colors</h1>
-        <theme-selector target="#demo-8"></theme-selector>
       </div>
 
       <div class="demo-sample">
-        <code-sample class="navy-bg" id="demo-8">
+        <code-sample class="purple-bg">
           <template>
             <resizable-panels>
               <div class="panel-1">lorem...</div>
@@ -166,7 +170,7 @@
           </template>
         </code-sample>
 
-        <code-sample class="white-bg">
+        <code-sample class="white-bg" theme="solarized-light">
           <template>
             function algo(param) {
               alert('helloooow');
